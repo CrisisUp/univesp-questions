@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questões de Java</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="quiz-carousel">
+        <div id="slide-counter"></div>
+
+        <div class="question-slide slide-active">
+            <div class="quiz-container">
+                <h1>Questão 1: Classes Abstratas</h1>
+                
+                <p>Observe o seguinte trecho de código em Java:</p>
+                <pre class="code-block">
+<code>
+public abstract class ClasseDisciplina {
+    protected int quantidadeAlunos;
+    public abstract void atribuir();
+    //...
+}
+</code>
+                </pre>
+                <p class="question-text">Assinale a seguir a alternativa que demonstra corretamente os atributos da classe apresentada.</p>
+
+                <div class="options">
+                    <div class="option">(a) Nenhum método deve ser concreto em uma classe abstrata em Java.</div>
+                    <div class="option">(b) O modificador protected, em uma classe abstrata, é obrigatório para tipos primitivos.</div>
+                    <div class="option option-correct" data-id="c">(c) A expressão public abstract indica que temos uma classe ou método abstratos.</div>
+                    <div class="option">(d) O termo abstract obriga o desenvolvedor a utilizar a herança em sua implementação.</div>
+                    <div class="option">(e) A utilização de void() acarretará erro de compilação se o método for abstrato.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (c)</h2>
+                    <p>Esta afirmação é 100% verdadeira e podemos vê-la duas vezes no código: na declaração da classe (<code>public abstract class</code>) e na declaração do método (<code>public abstract void</code>).</p>
+                    <h3>❌ Por que as outras estão incorretas</h3>
+                    <ul>
+                        <li><strong>(a) Falso.</strong> Uma classe abstrata PODE ter métodos concretos.</li>
+                        <li><strong>(b) Falso.</strong> <code>protected</code> é um modificador de acesso e não tem relação obrigatória com tipos primitivos.</li>
+                        <li><strong>(d) Enganosa.</strong> Embora classes abstratas precisem ser herdadas, (c) é a definição mais direta da sintaxe.</li>
+                        <li><strong>(e) Falso.</strong> A sintaxe <code>void()</code> é inválida. O correto é <code>void atribuir()</code>, que é um retorno válido.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 2: Generics (Declaração)</h1>
+                
+                <p>Na programação orientada a objetos, é comum o uso de classes e métodos genéricos... [texto omitido] ...assinale a alternativa que apresenta, corretamente, o uso dos “Generics” em linguagem Java.</p>
+
+                <div class="options">
+                    <div class="option option-correct" data-id="a">(a) List&lt;Carro&gt; carros = new ArrayList&lt;Carro&gt;()</div>
+                    <div class="option">(b) list = Arrays.asList( letters );</div>
+                    <div class="option">(c) Pessoa pessoa = new Pessoa();</div>
+                    <div class="option">(d) List lista = new ArrayList(); lista.add(1); lista.add(“dois”);</div>
+                    <div class="option">(e) Object[] pessoas = new Object[Pessoa];</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (a)</h2>
+                    <p>Esta linha é o exemplo clássico de "Generics". A sintaxe <code>&lt;Carro&gt;</code> especifica que esta <code>List</code> foi especializada para trabalhar **apenas** com objetos do tipo <code>Carro</code>.</p>
+                    <h3>O Problema (Sem Generics - Alt. D)</h3>
+                    <pre class="code-block"><code>// d. List lista = new ArrayList();
+// Esta lista aceita TUDO:
+lista.add(1);       // Um Inteiro
+lista.add("dois");  // Uma String
+
+// ERRO EM TEMPO DE EXECUÇÃO:
+String valor = (String) lista.get(0); // Quebra!</code></pre>
+                    <h3>A Solução (Com Generics - Alt. A)</h3>
+                    <pre class="code-block"><code>// a. List&lt;Carro&gt; carros = new ArrayList&lt;Carro&gt;();
+carros.add(new Carro()); // OK!
+
+// ERRO DE COMPILAÇÃO!
+// carros.add(1);
+// carros.add("dois");
+
+// Não precisa de conversão (cast):
+Carro meuCarro = carros.get(0); // Perfeito!</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 3: Generics (Conceito)</h1>
+                
+                <p>Considere o código a seguir... [texto omitido] ...que apresenta a utilização de um tipo genérico para uma lista de nomes.</p>
+
+                <pre class="code-block">
+<code>
+public static void main(String[] args) {
+    List&lt;String&gt; nomes = new ArrayList&lt;String&gt;();
+    nomes.add("José");
+    nomes.add("João");
+    nomes.add("Maria");
+    System.out.println(nomes.get(0));
+}
+</code>
+                </pre>
+
+                <p class="question-text">Em relação a esse código, é possível afirmar que:</p>
+
+                <div class="options">
+                    <div class="option">(a) o uso do tipo genérico pode ser observado nos comandos “.add”.</div>
+                    <div class="option option-correct" data-id="b">(b) o uso do tipo genérico é observado na notação &lt;String&gt;.</div>
+                    <div class="option">(c) o uso do tipo genérico é restrito ao uso de listas e coleções.</div>
+                    <div class="option">(d) qualquer tipo de dado poderia ser adicionado à lista, por ser genérica.</div>
+                    <div class="option">(e) o tipo genérico aplicado à lista é “nomes”.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (b)</h2>
+                    <p>A sintaxe <code>&lt;String&gt;</code>, conhecida como "operador diamante" (diamond operator) ou parâmetro de tipo, é a forma como o Java implementa os "Generics".</p>
+                    
+                    <h3>🖥️ Explicação com o Código</h3>
+                    <p>A notação <code>&lt;String&gt;</code> é a definição do "Generics". Ela garante a segurança de tipo (Type Safety), restringindo a lista para aceitar apenas <code>String</code>.</p>
+
+                    <h3>❌ Por que as outras estão erradas?</h3>
+                    <ul>
+                        <li><strong>(a) Incorreto.</strong> O <code>.add</code> é o método; o Generics <code>&lt;String&gt;</code> é a regra que o método obedece.</li>
+                        <li><strong>(d) Incorreto.</strong> Os Generics fazem o oposto: eles <strong>restringem</strong> o tipo.</li>
+                        <li><strong>(e) Incorreto.</strong> <code>nomes</code> é o nome da variável, não o tipo genérico.</li>
+                        <li><strong>(c) Incorreto.</strong> É o uso mais comum, mas você pode criar suas próprias classes e métodos genéricos.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 4: Coleções (Métodos)</h1>
+                
+                <p>A estrutura de coleções em Java fornece ao desenvolvedor diversas interfaces e classes... [texto omitido] ...Em relação aos métodos utilizados nas coleções, analise as afirmativas a seguir.</p>
+
+                <ol style="list-style-type: upper-roman; margin-left: 20px; padding-left: 10px;">
+                    <li>A função do método reverse é inverter a ordem dos elementos em uma List.</li>
+                    <li>No método fill, os elementos em uma List são sobrescritos com um determinado valor.</li>
+                    <li>A operação fill é útil para limpar uma lista e bloquear suas alterações.</li>
+                    <li>Se a lista de destino for mais longa, os elementos não sobrescritos sofrerão alterações.</li>
+                </ol>
+
+                <p class="question-text">Está correto o que se afirma em:</p>
+
+                <div class="options">
+                    <div class="option">(a) I, II e IV, apenas</div>
+                    <div class="option">(b) II e III, apenas</div>
+                    <div class="option option-correct" data-id="c">(c) I e II, apenas</div>
+                    <div class="option">(d) I, III e IV, apenas</div>
+                    <div class="option">(e) I e III, apenas</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (c) I e II, apenas</h2>
+                    
+                    <h3>🔀 Afirmativa I: (Verdadeira) - reverse</h3>
+                    <p>O método <code>Collections.reverse()</code> modifica a lista "no local" (in-place), invertendo a posição de todos os seus elementos.</p>
+                    <pre class="code-block"><code>
+List&lt;String&gt; frutas = new ArrayList&lt;&gt;(Arrays.asList("Maçã", "Banana", "Laranja"));
+// Lista Original: [Maçã, Banana, Laranja]
+Collections.reverse(frutas);
+// Lista Revertida: [Laranja, Banana, Maçã]
+                    </code></pre>
+
+                    <h3>🎨 Afirmativa II: (Verdadeira) - fill</h3>
+                    <p>O método <code>Collections.fill()</code> substitui <strong>todos</strong> os elementos existentes na lista por uma cópia do objeto especificado.</p>
+                    <pre class="code-block"><code>
+List&lt;String&gt; lista = new ArrayList&lt;&gt;(Arrays.asList("Item 1", "Item 2", "Item 3"));
+// Lista Original: [Item 1, Item 2, Item 3]
+Collections.fill(lista, "Substituído");
+// Lista Preenchida: [Substituído, Substituído, Substituído]
+                    </code></pre>
+
+                    <h3>❌ Afirmativa III: (Falsa)</h3>
+                    <p><code>fill</code> não "limpa" a lista (como <code>.clear()</code> faz) e não "bloqueia" alterações (como <code>Collections.unmodifiableList()</code> faria). Ele <strong>é</strong> uma alteração.</p>
+
+                    <h3>❌ Afirmativa IV: (Falsa)</h3>
+                    <p><code>fill</code> sempre sobrescreve <strong>todos</strong> os elementos da lista, independentemente do seu tamanho. Não existem "elementos não sobrescritos".</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 5: Iteradores (Conceito)</h1>
+                
+                <p>A programação orientada a objetos tem um importante recurso, as classes concretas de coleções. Com base no uso da interface “Iterator”, analise as asserções a seguir e a relação proposta entre elas.</p>
+
+                <ol style="list-style-type: upper-roman; margin-left: 20px; padding-left: 10px;">
+                    <li>Uma das vantagens de usar iteradores é que eles não dependem do tipo de coleção.</li>
+                    <li>Não são todas as coleções que têm um método de remoção por índice, como “List”, e cada coleção tem uma maneira de percorrer os elementos.</li>
+                </ol>
+
+                <p class="question-text">Analisando essas asserções, é correto afirmar que:</p>
+
+                <div class="options">
+                    <div class="option">(a) a primeira asserção é falsa e a segunda é verdadeira.</div>
+                    <div class="option option-correct" data-id="b">(b) as duas asserções são verdadeiras.</div>
+                    <div class="option">(c) a primeira asserção é verdadeira e a segunda é falsa.</div>
+                    <div class="option">(d) as duas asserções são falsas.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (b) as duas asserções são verdadeiras.</h2>
+                    <p>A Asserção II (o problema) é a justificativa do porquê a Asserção I (a solução) é tão vantajosa.</p>
+
+                    <h3>🖥️ Análise com Código</h3>
+                    <p>Vamos usar uma <code>List</code> (que tem índice) e um <code>Set</code> (que não tem) para provar as afirmações. <code>Set</code>, por exemplo, não tem índice.</p>
+                    
+                    <pre class="code-block"><code>
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+public class TesteIterador {
+    public static void main(String[] args) {
+        
+        List&lt;String&gt; lista = new ArrayList&lt;&gt;();
+        lista.add("Ana");
+        lista.add("Bruno");
+
+        Set&lt;String&gt; conjunto = new HashSet&lt;&gt;();
+        conjunto.add("Carlos");
+        conjunto.add("Daniela");
+        
+        // --- Provando a Asserção II (O Problema) ---
+        // 1. List tem índice, Set não.
+        lista.remove(0); // FUNCIONA!
+        // conjunto.remove(0); // ERRO DE COMPILAÇÃO!
+        
+        // 2. Formas de percorrer são diferentes
+        // Jeito da Lista (com índice):
+        for (int i = 0; i < lista.size(); i++) { /*...*/ }
+        // Jeito do Set (sem índice, for-each):
+        for (String nome : conjunto) { /*...*/ }
+
+        
+        // --- Provando a Asserção I (A Solução) ---
+        // O CÓDIGO DO LOOP É IDÊNTICO PARA AMBOS!
+        
+        Iterator&lt;String&gt; iteradorDaLista = lista.iterator();
+        System.out.println("Iterador da Lista:");
+        while (iteradorDaLista.hasNext()) {
+            System.out.println(iteradorDaLista.next());
+        }
+        
+        Iterator&lt;String&gt; iteradorDoSet = conjunto.iterator();
+        System.out.println("Iterador do Set:");
+        while (iteradorDoSet.hasNext()) {
+            System.out.println(iteradorDoSet.next());
+        }
+    }
+}
+                    </code></pre>
+                    
+                    <h3>Conclusão</h3>
+                    <ul>
+                        <li><strong>Asserção II é Verdadeira:</strong> O código prova que <code>List</code> e <code>Set</code> são acessados de formas diferentes (com e sem índice).</li>
+                        <li><strong>Asserção I é Verdadeira:</strong> O código prova que o <code>Iterator</code> fornece uma forma única (<code>.hasNext()</code>, <code>.next()</code>) para percorrer ambos, escondendo essa diferença.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <button class="nav-arrow" id="prev-btn" title="Anterior">&larr;</button>
+        <button class="nav-arrow" id="next-btn" title="Próximo">&rarr;</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

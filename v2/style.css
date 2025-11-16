@@ -1,0 +1,172 @@
+/* === NOVO: Variáveis CSS === */
+/* Se você mudar o tamanho do container, as setas se ajustam! */
+:root {
+    --container-width: 750px; /* Largura do conteúdo */
+    --arrow-width: 45px;      /* Tamanho da seta */
+    --arrow-gap: 25px;        /* Espaço da seta para o conteúdo */
+}
+
+/* === MUDADO: Configurações Globais === */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+    margin: 0; /* Limpa margens padrão */
+    padding: 0; /* Limpa preenchimentos padrão */
+}
+
+/* === MUDADO: Carrossel Wrapper === */
+#quiz-carousel {
+    position: relative;
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 40px auto; /* Adiciona margem em cima/baixo e centra horizontalmente */
+    box-sizing: border-box; /* Garante que o padding não quebre o layout */
+}
+
+/* === Slides (Sem alteração) === */
+.question-slide {
+    display: none;
+    width: 100%;
+}
+.question-slide.slide-active {
+    display: block;
+}
+
+/* Container Principal (Sem alteração) */
+.quiz-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 25px 35px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Cabeçalhos (Sem alteração) */
+h1 {
+    color: #0056b3;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+h2, h3 {
+    color: #0056b3;
+}
+
+/* === ALTERADO: Bloco de Código === */
+.code-block {
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    font-family: "Courier New", Courier, monospace;
+    
+    /* Espaçamento INTERNO (dentro do card) */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 0.95em;
+
+    /* Espaçamento EXTERNO (entre o texto e o card) */
+    margin-top: 8px; /* <-- Reduzido */
+    margin-bottom: 15px; 
+}
+
+/* Texto da Questão (Sem alteração) */
+.question-text {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-top: 20px;
+}
+
+/* Opções (Sem alteração) */
+.options .option {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 12px;
+    margin-bottom: 10px;
+    cursor: default;
+}
+
+/* Destaque (Sem alteração) */
+.option-correct-highlight {
+    background-color: #d4edda !important;
+    border-color: #c3e6cb !important;
+    color: #155724 !important;
+    font-weight: bold;
+}
+
+/* Botão de Resposta (Sem alteração) */
+.toggle-answer-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 15px;
+}
+.toggle-answer-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Seção da Resposta (Sem alteração) */
+.answer-section {
+    margin-top: 20px;
+    padding: 20px;
+    border-top: 2px solid #eee;
+    background-color: #fdfdfd;
+}
+.answer-section ul { padding-left: 20px; }
+.answer-section li { margin-bottom: 10px; }
+
+/* === MUDADO: Botões de Navegação (Setas) === */
+.nav-arrow {
+    position: fixed; /* Fica fixo na tela */
+    top: 50vh; /* Fica a 50% da altura da TELA */
+    transform: translateY(-50%); /* Centraliza verticalmente */
+    
+    background-color: rgba(0, 86, 179, 0.8);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: var(--arrow-width);
+    height: var(--arrow-width);
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    z-index: 10;
+}
+.nav-arrow:hover {
+    background-color: rgba(0, 86, 179, 1);
+}
+
+/* === MUDADO: Posição das Setas usando calc() === */
+#prev-btn {
+    /* (Metade da Tela) - (Metade do Conteúdo) - (Tamanho da Seta) - (Espaço) */
+    left: calc(50% - (var(--container-width) / 2) - var(--arrow-width) - var(--arrow-gap));
+}
+#next-btn {
+    /* Mesma lógica, mas vindo da direita */
+    right: calc(50% - (var(--container-width) / 2) - var(--arrow-width) - var(--arrow-gap));
+}
+
+
+/* === Contador (Sem alteração) === */
+#slide-counter {
+    position: absolute;
+    top: -30px;
+    right: 10px;
+    font-size: 0.9em;
+    color: #555;
+    font-weight: bold;
+}

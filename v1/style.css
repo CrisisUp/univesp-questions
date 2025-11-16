@@ -1,0 +1,102 @@
+/* Configurações Globais */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container Principal */
+.quiz-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 25px 30px;
+    width: 100%;
+    max-width: 700px;
+}
+
+h1 {
+    color: #0056b3; /* Azul */
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+h2, h3 {
+    color: #0056b3;
+}
+
+/* Bloco de Código */
+.code-block {
+    background-color: #2d2d2d; /* Fundo escuro */
+    color: #f8f8f2; /* Texto claro */
+    font-family: "Courier New", Courier, monospace;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto; /* Rolagem horizontal */
+    font-size: 0.95em;
+}
+
+.question-text {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-top: 20px;
+}
+
+/* Opções */
+.options .option {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 12px;
+    margin-bottom: 10px;
+    cursor: default;
+}
+
+/* Destaque para a resposta correta (quando ativado) */
+.option-correct {
+    background-color: #d4edda; /* Fundo verde claro */
+    border-color: #c3e6cb;
+    color: #155724; /* Texto verde escuro */
+    font-weight: bold;
+}
+
+/* Botão */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Seção da Resposta */
+.answer-section {
+    margin-top: 20px;
+    padding: 20px;
+    border-top: 2px solid #eee;
+    background-color: #fdfdfd;
+}
+
+.answer-section ul {
+    padding-left: 20px;
+}
+
+.answer-section li {
+    margin-bottom: 10px;
+}

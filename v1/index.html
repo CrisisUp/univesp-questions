@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão de Java - Classes Abstratas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="quiz-container">
+        <h1>Questão de Java: Classes Abstratas</h1>
+        
+        <p>Observe o seguinte trecho de código em Java:</p>
+
+        <pre class="code-block">
+<code>
+public abstract class ClasseDisciplina {
+    protected int quantidadeAlunos;
+    public abstract void atribuir();
+    //...
+}
+</code>
+        </pre>
+
+        <p class="question-text">Assinale a seguir a alternativa que demonstra corretamente os atributos da classe apresentada.</p>
+
+        <div class="options">
+            <div class="option" id="option-a">(a) Nenhum método deve ser concreto em uma classe abstrata em Java.</div>
+            <div class="option" id="option-b">(b) O modificador protected, em uma classe abstrata, é obrigatório para tipos primitivos.</div>
+            <div class="option" id="option-c">(c) A expressão public abstract indica que temos uma classe ou método abstratos.</div>
+            <div class="option" id="option-d">(d) O termo abstract obriga o desenvolvedor a utilizar a herança em sua implementação.</div>
+            <div class="option" id="option-e">(e) A utilização de void() acarretará erro de compilação se o método for abstrato.</div>
+        </div>
+
+        <button id="toggle-answer-btn">Mostrar Resposta</button>
+
+        <div id="answer-section" class="answer-section" style="display: none;">
+            
+            <h2>Resposta Correta</h2>
+            <p><strong>(c) A expressão public abstract indica que temos uma classe ou método abstratos.</strong></p>
+
+            <h3>🖥️ Análise Detalhada</h3>
+            <p>Embora a pergunta peça uma alternativa que descreva os atributos (como <code>quantidadeAlunos</code>), as opções fornecidas são, na verdade, regras gerais sobre o conceito de classes abstratas. Analisando as opções, a (c) é a única afirmação correta e diretamente demonstrada pelo código.</p>
+            
+            <p><strong>Justificativa (c):</strong> Esta afirmação é 100% verdadeira e podemos vê-la duas vezes no código:</p>
+            <ul>
+                <li><code>public abstract class ClasseDisciplina</code>: A expressão é usada na declaração da classe.</li>
+                <li><code>public abstract void atribuir()</code>: A expressão é usada na declaração do método.</li>
+            </ul>
+
+            <h3>❌ Por que as outras estão incorretas</h3>
+            <ul>
+                <li><strong>(a) Falso.</strong> Uma classe abstrata PODE ter métodos concretos (métodos normais com implementação).</li>
+                <li><strong>(b) Falso.</strong> O modificador <code>protected</code> é um modificador de acesso e não tem nenhuma relação obrigatória com tipos primitivos (<code>int</code>).</li>
+                <li><strong>(d) Enganosa.</strong> Embora classes abstratas precisem ser herdadas para serem usadas, a alternativa (c) é uma definição mais direta e fundamental do que a sintaxe <code>public abstract</code> indica.</li>
+                <li><strong>(e) Falso.</strong> A sintaxe <code>void()</code> (com parênteses no void) é inválida. O código mostra a forma correta: <code>public abstract void atribuir()</code>, onde <code>void</code> é um tipo de retorno válido.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
