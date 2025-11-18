@@ -280,6 +280,1172 @@ public class TesteIterador {
                 </div>
             </div>
         </div>
+        
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 6: Iteradores (Uso)</h1>
+                
+                <p>Considere o código em linguagem Java (qualquer versão) a seguir, que apresenta o uso de um tipo genérico para criar uma lista de nomes, utilizando a interface “Iterator” para recuperar os nomes da lista.</p>
+
+                <pre class="code-block">
+<code>
+public static void main(String[] args) {
+    List&lt;String&gt; nomes = new ArrayList&lt;String&gt;();
+    nomes.add("João");
+    nomes.add("Maria");
+    nomes.add("José");  
+    Iterator iterator = nomes.iterator();
+    while (iterator.hasNext()) {
+        System.out.println(iterator.next());
+    }
+}
+</code>
+                </pre>
+
+                <p class="question-text">Em relação ao código apresentado, assinale a alternativa correta.</p>
+
+                <div class="options">
+                    <div class="option">(a) Existe um erro no código apresentado, pois faltou a utilização do método “remove()”, para remover os itens do iterador a cada interação.</div>
+                    <div class="option">(b) O método “hasNext()”, da interface “Iterator”, é utilizado para verificar se existem itens na lista e, em seguida, removê-los.</div>
+                    <div class="option option-correct" data-id="c">(c) O método “next()” retorna o próximo elemento do iterator, já no formato correto de saída, devido ao uso do tipo “Generics” na lista.</div>
+                    <div class="option">(d) Existe um erro no código apresentado, pois, no comando de saída, não houve a conversão de tipo de dados para String.</div>
+                    <div class="option">(e) A limitação do uso da interface “Iterator” é que ela percorre e remove os itens da lista, não permitindo que a lista seja usada novamente.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (c)</h2>
+                    <p>O uso do Generics (<code>&lt;String&gt;</code>) na lista é a razão pela qual <code>next()</code> retorna o elemento no formato que o <code>System.out.println()</code> pode usar diretamente.</p>
+
+                    <h3>✅ (c) Por que esta é a alternativa correta?</h3>
+                    <ul>
+                        <li><strong><code>List&lt;String&gt; nomes...</code></strong>: Ao usar Generics <code>&lt;String&gt;</code>, você garantiu ao compilador que esta lista SÓ contém objetos <code>String</code>.</li>
+                        <li><strong><code>iterator.next()</code></strong>: Quando o iterador pega o próximo item, ele sabe que é uma <code>String</code>.</li>
+                        <li><strong>"Formato correto de saída"</strong>: O <code>System.out.println()</code> sabe como imprimir Strings. Como <code>next()</code> retorna uma <code>String</code> (graças aos Generics), o <code>println</code> a usa diretamente, sem precisar de conversão (cast).</li>
+                    </ul>
+
+                    <h3>❌ Por que as outras estão incorretas?</h3>
+                    <ul>
+                        <li><strong>(a) Falso.</strong> O método <code>remove()</code> é opcional e usado para remover, não para ler. O código quer apenas ler/imprimir.</li>
+                        <li><strong>(b) Falso.</strong> <code>hasNext()</code> é apenas uma verificação (uma pergunta: "tem próximo item?"). Ele não remove nada.</li>
+                        <li><strong>(d) Falso.</strong> O código não tem erro. Não é necessária uma conversão, pois o <code>System.out.println()</code> aceita o objeto retornado e o imprime.</li>
+                        <li><strong>(e) Falso.</strong> O método <code>next()</code> **não remove** o item, apenas avança o cursor e retorna o item. A lista <code>nomes</code> continua intacta.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 7: Coleções (Shuffle)</h1>
+                
+                <p>A classe Collections fornece vários algoritmos de alto desempenho... [texto omitido] ... observe o seguinte trecho de código em Java:</p>
+
+                <pre class="code-block">
+<code>
+list = Arrays.asList(deck); 
+Collections.shuffle(list);
+</code>
+                </pre>
+
+                <p class="question-text">Diante das informações apresentadas, assinale a alternativa correta a seguir.</p>
+
+                <div class="options">
+                    <div class="option option-correct" data-id="a">(a) O método shuffle ordena aleatoriamente os itens da lista passada como parâmetro</div>
+                    <div class="option">(b) O método shuffle serve para exibir os itens da lista passada como parâmetro</div>
+                    <div class="option">(c) O método asList ordena a lista de forma decrescente e exibe o resultado ao usuário</div>
+                    <div class="option">(d) O método shuffle serve para ordenar, de forma crescente, os itens da lista passada como parâmetro</div>
+                    <div class="option">(e) O método asList faz parte da classe Collections, com uso exclusivo do ArrayList</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (a)</h2>
+                    <p>O método <code>Collections.shuffle()</code> pega uma lista e "embaralha" seus elementos, mudando suas posições de forma aleatória, assim como embaralhar um baralho de cartas.</p>
+                    
+                    <h3>🎲 Explicando com o Código</h3>
+                    <p>Vamos criar um exemplo funcional para ver o que o código faz:</p>
+                    
+                    <pre class="code-block"><code>
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+public class TesteShuffle {
+    public static void main(String[] args) {
+        
+        // 1. Nosso "baralho" inicial, em ordem
+        String[] deck = {"Ás", "2", "3", "4", "Rei"};
+
+        // 2. Converte o array 'deck' em uma 'List'
+        List&lt;String&gt; list = Arrays.asList(deck);
+        
+        System.out.println("Original: " + list);
+
+        // 3. Embaralha a lista aleatoriamente
+        Collections.shuffle(list);
+
+        System.out.println("Embaralhado: " + list);
+    }
+}
+// Saída de Exemplo:
+// Original: [Ás, 2, 3, 4, Rei]
+// Embaralhado: [3, Rei, Ás, 2, 4] (será diferente a cada vez)
+                    </code></pre>
+                    
+                    <h3>❌ Por que as outras estão erradas?</h3>
+                    <ul>
+                        <li><strong>(b) Falso.</strong> <code>shuffle</code> modifica a lista, não a exibe.</li>
+                        <li><strong>(c) Falso.</strong> <code>asList</code> apenas converte, não ordena.</li>
+                        <li><strong>(d) Falso.</strong> O oposto. Para ordenar, usa-se <code>Collections.sort()</code>.</li>
+                        <li><strong>(e) Falso.</strong> <code>asList</code> é da classe <code>Arrays</code>, não <code>Collections</code>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 8: Conjuntos (Set) - Características</h1>
+                
+                <p>Em aplicações desenvolvidas em linguagem Java, é muito comum o uso dos “Conjuntos”... [texto omitido] ...Considere as características fundamentais dos conjuntos em linguagem Java, analise as afirmativas a seguir e assinale V para a(s) verdadeira(s) e F para a(s) falsa(s).</p>
+
+                <ol style="list-style-type: upper-roman; margin-left: 20px; padding-left: 10px;">
+                    <li>( ) Os elementos inseridos nos conjuntos, quando recuperados, são apresentados na mesma ordem em que foram inseridos.</li>
+                    <li>( ) Em relação ao uso dos conjuntos em linguagem Java do tipo HashSet ou TreeSet, ao se percorrer esses conjuntos, a ordem em que foram inseridos os elementos não é conhecida.</li>
+                    <li>( ) Na pesquisa de dados em um conjunto do tipo HashSet ou LinkedHashSet, a velocidade é mais rápida que em um objeto do tipo List.</li>
+                    <li>( ) Os conjuntos não aceitam valores duplicados; a tentativa de inserção de um registro já existente no Set não terá sucesso.</li>
+                </ol>
+
+                <p class="question-text">Assinale a alternativa que apresenta a sequência correta.</p>
+
+                <div class="options">
+                    <div class="option">(a) V, F, V, F</div>
+                    <div class="option">(b) F, F, F, V.</div>
+                    <div class="option option-correct" data-id="c">(c) F, V, V, V.</div>
+                    <div class="option">(d) V, V, V, V.</div>
+                    <div class="option">(e) V, V, F, F.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (c) F, V, V, V.</h2>
+                    
+                    <h3>❌ I. (Falso) Ordem de inserção não é garantida</h3>
+                    <p>A interface <code>Set</code> não garante a ordem de inserção. A implementação mais comum, <code>HashSet</code>, não oferece nenhuma garantia sobre a ordem (pode parecer aleatória).</p>
+                    <pre class="code-block"><code>
+import java.util.HashSet;
+import java.util.Set;
+
+Set&lt;String&gt; meuSet = new HashSet&lt;&gt;();
+meuSet.add("C");
+meuSet.add("B");
+meuSet.add("A");
+// Ordem de Inserção: C, B, A
+// Saída Provável (HashSet): [A, B, C] (Não garantido)
+System.out.println("HashSet: " + meuSet);
+                    </code></pre>
+                    <p><em>(Nota: Para manter a ordem de inserção, você usaria um <code>LinkedHashSet</code>).</em></p>
+
+                    <h3>✅ II. (Verdadeiro) HashSet/TreeSet não seguem ordem de inserção</h3>
+                    <p>Correto. <code>HashSet</code> não tem ordem previsível. <code>TreeSet</code> também não segue a ordem de inserção; ele segue a "ordem natural" (alfabética, numérica) dos elementos.</p>
+                    <pre class="code-block"><code>
+Set&lt;String&gt; hashSet = new HashSet&lt;&gt;();
+Set&lt;String&gt; treeSet = new TreeSet&lt;&gt;();
+String[] frutas = {"Uva", "Maçã", "Abacaxi", "Pera"};
+for (String f : frutas) { hashSet.add(f); treeSet.add(f); }
+// Ordem de Inserção: Uva, Maçã, Abacaxi, Pera
+// HashSet (ordem 'hash'):   [Abacaxi, Pera, Uva, Maçã]
+// TreeSet (ordem 'sorted'): [Abacaxi, Maçã, Pera, Uva]
+                    </code></pre>
+
+                    <h3>✅ III. (Verdadeiro) Pesquisa é mais rápida que List</h3>
+                    <p>Correto. Esta é a principal vantagem de um <code>HashSet</code>. Ele usa uma tabela hash, permitindo buscas em tempo constante (O(1)). Uma <code>List</code> precisa verificar item por item, (O(n)), o que é muito mais lento em coleções grandes.</p>
+                    
+                    <pre class="code-block"><code>
+// Imagine 1.000.000 de itens em ambos...
+// --- Pesquisa na LISTA (LENTA) ---
+// Precisa checar 1.000.000 de itens.
+boolean achouNaLista = lista.contains("Item 1000000"); 
+        
+// --- Pesquisa no SET (RÁPIDA) ---
+// Calcula o hash e encontra em (idealmente) 1 operação.
+boolean achouNoSet = conjunto.contains("Item 1000000");
+                    </code></pre>
+
+                    <h3>✅ IV. (Verdadeiro) Não aceitam valores duplicados</h3>
+                    <p>Correto. Esta é a característica fundamental de um <code>Set</code>. O método <code>.add()</code> retorna <code>false</code> se o item já existir e não o adiciona novamente.</p>
+                    <pre class="code-block"><code>
+Set&lt;String&gt; meuSet = new HashSet&lt;&gt;();
+boolean sucesso1 = meuSet.add("Item Único"); // Retorna true
+boolean sucesso2 = meuSet.add("Item Único"); // Retorna false
+// Tamanho final do Set: 1
+System.out.println("Tamanho: " + meuSet.size());
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 9: Map (containsValue)</h1>
+                
+                <p>Em programação orientada a objetos, a função do Map é conectar entre chave e valor... [texto omitido] ...A interface Java Map possui um método que permite verificar se o Map contém um determinado valor. O método e uma correta chamada a ele são mostrados em:</p>
+
+                <div class="options">
+                    <div class="option">(a) valueExistis(); in hasValue = map.valueExistis(“valor 1”);</div>
+                    <div class="option">(b) containsValue(); int hasValue = containsValue.StringMap(“valor 1”);</div>
+                    <div class="option">(c) containsValue(); int hasValue = map.containsValue(“valor 1”);</div>
+                    <div class="option option-correct" data-id="d">(d) containsValue(); boolean hasValue = map.containsValue(“valor 1”);</div>
+                    <div class="option">(e) valueExistis(); boolean hasValue = map.valueExistis(“valor 1”);</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (d)</h2>
+                    <p><code>containsValue(); boolean hasValue = map.containsValue(“valor 1”);</code></p>
+                    
+                    <h3>🗺️ Explicação com Código</h3>
+                    <p>O <code>Map</code> armazena pares de chave-valor (ex: "CPF" -> "Nome"). Para verificar se um <strong>valor</strong> (ex: "Nome") existe em qualquer parte do mapa, usamos o método <code>containsValue()</code>. Este método retorna um <code>boolean</code> (true ou false).</p>
+                    
+                    
+                    <pre class="code-block"><code>
+import java.util.HashMap;
+import java.util.Map;
+
+public class TesteMap {
+    public static void main(String[] args) {
+        
+        // Criamos um Map (Chave=ID, Valor=Nome)
+        Map&lt;Integer, String&gt; mapaDeNomes = new HashMap&lt;&gt;();
+        
+        mapaDeNomes.put(1, "Ana");
+        mapaDeNomes.put(2, "Bruno");
+        mapaDeNomes.put(3, "valor 1"); // O valor da pergunta
+        
+        // --- Esta é a linha da alternativa (d) ---
+        
+        // 1. O método correto é 'containsValue(...)'
+        // 2. A chamada correta é 'mapaDeNomes.containsValue(...)'
+        // 3. O tipo de retorno é 'boolean'
+        boolean hasValue = mapaDeNomes.containsValue("valor 1");
+        
+        System.out.println("O mapa contém 'valor 1'? " + hasValue); // Imprime: true
+        
+        // Testando um valor que não existe
+        boolean hasValue99 = mapaDeNomes.containsValue("Valor 99");
+        System.out.println("O mapa contém 'Valor 99'? " + hasValue99); // Imprime: false
+    }
+}
+                    </code></pre>
+                    
+                    <h3>❌ Por que as outras estão erradas?</h3>
+                    <ul>
+                        <li><strong>(a) e (e):</strong> O método <code>valueExistis</code> simplesmente não existe na interface Map.</li>
+                        <li><strong>(b):</strong> A sintaxe da chamada (<code>containsValue.StringMap</code>) está incorreta e o tipo de retorno <code>int</code> também.</li>
+                        <li><strong>(c):</strong> A sintaxe da chamada está correta, mas o tipo de retorno está errado. O método retorna <code>boolean</code> (verdadeiro/falso), não <code>int</code>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 10: Map (Características)</h1>
+                
+                <p>Set e Map são duas interfaces importantes do Java... [texto omitido] ...Maps diferem de Sets pelo fato de que Maps contêm chaves e valores, enquanto Sets contêm somente valores... [texto omitido] ...De acordo com o apresentado no texto, e com base nas características de Mapas, identifique se são verdadeiras (V) ou falsas (F) as afirmativas a seguir.</p>
+
+                <ol style="list-style-type: upper-roman; margin-left: 20px; padding-left: 10px;">
+                    <li>( ) A interface SortedMap estende Map e mantém as suas chaves em ordem classificada – na ordem natural dos elementos ou em uma ordem especificada por uma implementação Comparator. A classe TreeMap implementa SortedMap.</li>
+                    <li>( ) As classes Hashtable e HashMap permitem usar hashes sem ter de implementar mecanismos de Tabela Hash – um exemplo clássico da reutilização, paradigma da programação orientada a objetos.</li>
+                    <li>( ) A interface Java Map tem um método chamado putAll(), que pode copiar todos os pares chave + valor (entradas) de outra instância do Map para si mesmo. Na teoria dos Conjuntos, isso também é referido como a interseção de duas instâncias de Map.</li>
+                </ol>
+
+                <p class="question-text">Assinale a alternativa que apresenta a sequência correta.</p>
+
+                <div class="options">
+                    <div class="option">(a) V, V, V.</div>
+                    <div class="option">(b) F, V, F.</div>
+                    <div class="option">(c) V, F, V.</div>
+                    <div class="option">(d) F, V, V.</div>
+                    <div class="option option-correct" data-id="e">(e) V, V, F.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (e) V, V, F.</h2>
+                    
+                    <h3>✅ I. (Verdadeiro) SortedMap e TreeMap</h3>
+                    <p>Correto. <code>TreeMap</code> implementa <code>SortedMap</code> e armazena as chaves em uma árvore (Red-Black Tree), o que garante que as chaves estarão sempre em ordem (natural ou por um Comparator).</p>
+                    
+                    <pre class="code-block"><code>
+import java.util.SortedMap;
+import java.util.TreeMap;
+
+SortedMap&lt;String, String&gt; mapaOrdenado = new TreeMap&lt;&gt;();
+// Inserimos as chaves FORA de ordem alfabética
+mapaOrdenado.put("C-Carlos", "Valor 3");
+mapaOrdenado.put("A-Ana", "Valor 1");
+mapaOrdenado.put("B-Bruno", "Valor 2");
+
+// Ao imprimir, o TreeMap garante a ordem das CHAVES
+// Saída: {A-Ana=Valor 1, B-Bruno=Valor 2, C-Carlos=Valor 3}
+System.out.println(mapaOrdenado); 
+                    </code></pre>
+
+                    <h3>✅ II. (Verdadeiro) HashMap e Reutilização</h3>
+                    <p>Correto. Esta é a essência da abstração. <code>HashMap</code> é uma estrutura de dados complexa (Tabela Hash), mas para nós, ela é uma "caixa-preta". Nós reutilizamos todo esse código complexo apenas chamando métodos fáceis como <code>.put()</code> e <code>.get()</code>.</p>
+                    
+                    <pre class="code-block"><code>
+import java.util.Map;
+import java.util.HashMap;
+
+// Usamos o HashMap sem saber como ele funciona por dentro
+Map&lt;String, Integer&gt; mapaHash = new HashMap&lt;&gt;();
+
+// REUTILIZAÇÃO: Não implementamos o hash, só usamos:
+mapaHash.put("Ana", 30);
+Integer idade = mapaHash.get("Ana");
+                    </code></pre>
+
+                    <h3>❌ III. (Falso) putAll() é UNIÃO, não Interseção</h3>
+                    <p>Correto, o método <code>putAll()</code> existe, mas ele executa uma <strong>UNIÃO</strong> (adiciona todos os elementos do mapaB no mapaA), não uma <strong>interseção</strong> (que manteria apenas os elementos em comum).</p>
+                    <pre class="code-block"><code>
+Map&lt;Integer, String&gt; mapaA = new HashMap&lt;&gt;();
+mapaA.put(1, "Item 1-A"); // Chave 1
+mapaA.put(2, "Item 2-A"); // Chave 2
+
+Map&lt;Integer, String&gt; mapaB = new HashMap&lt;&gt;();
+mapaB.put(2, "Item 2-B"); // Chave 2 (sobrescreverá)
+mapaB.put(3, "Item 3-B"); // Chave 3
+        
+// Isso é uma UNIÃO
+mapaA.putAll(mapaB);
+        
+// Saída: {1=Item 1-A, 2=Item 2-B, 3=Item 3-B}
+System.out.println(mapaA);
+                    </code></pre>
+                    <p>O resultado final (chaves 1, 2 e 3) é a união de todas as chaves, provando que a afirmativa é falsa.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 11: Set (Implementações)</h1>
+                
+                <p>Um Conjunto é uma Coleção que não pode conter elementos duplicados... [texto omitido] ...Duas instâncias de Set são iguais se contiverem os mesmos elementos. Observe as afirmações a seguir, sobre as Coleções em Java, e correlacione-as, adequadamente, aos termos aos quais se referem.</p>
+
+                <div style="display: flex; justify-content: space-around; margin-bottom: 15px;">
+                    <ol style="list-style-type: decimal; padding-left: 20px;">
+                        <li>TreeSet</li>
+                        <li>HashSet</li>
+                        <li>LinkedHashSet</li>
+                    </ol>
+                    <ol style="list-style-type: upper-roman; padding-left: 20px; max-width: 60%;">
+                        <li>Armazena os seus elementos em uma Tabela Hash. É a implementação de melhor desempenho; no entanto, não oferece garantias quanto à ordem de iteração.</li>
+                        <li>Armazena os seus elementos em uma árvore rubro-negra, ordena os seus elementos com base em seus valores e é, substancialmente, mais lento do que outros Conjuntos.</li>
+                        <li>É implementado como uma Tabela Hash com uma lista encadeada passando por ela e ordena os seus elementos com base na ordem em que foram inseridos no Conjunto.</li>
+                    </ol>
+                </div>
+
+                <p class="question-text">Assinale a alternativa que correlaciona, adequadamente, os dois grupos de informação.</p>
+
+                <div class="options">
+                    <div class="option">(a) 1-I; 2-II; 3-III.</div>
+                    <div class="option">(b) 1-II; 2-III; 3-I.</div>
+                    <div class="option option-correct" data-id="c">(c) 1-II; 2-I; 3-III.</div>
+                    <div class="option">(d) 1-III; 2-I; 3-II.</div>
+                    <div class="option">(e) 1-III; 2-II; 3-I.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (c) 1-II; 2-I; 3-III.</h2>
+                    
+                    <h3>🖥️ Explicação com Código</h3>
+                    <p>Vamos usar um exemplo de código único que insere os mesmos elementos (fora de ordem) em todos os três tipos de Set para demonstrar por que as ordens de armazenamento e as características são diferentes.</p>
+
+                    <pre class="code-block"><code>
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.TreeSet;
+import java.util.Set;
+
+public class TesteConjuntos {
+    public static void main(String[] args) {
+        // A ordem de inserção será: Uva, Maçã, Pera, Abacaxi
+        System.out.println("Ordem de Inserção: Uva, Maçã, Pera, Abacaxi\n");
+
+        // --- 2-I: HashSet (Tabela Hash, sem ordem) ---
+        // I. Armazena... em uma Tabela Hash... não oferece garantias...
+        
+        Set&lt;String&gt; hashSet = new HashSet&lt;&gt;();
+        hashSet.add("Uva");
+        hashSet.add("Maçã");
+        hashSet.add("Pera");
+        hashSet.add("Abacaxi");
+        // A saída NÃO é a ordem de inserção e NÃO é a ordem alfabética.
+        // É a ordem baseada no 'hash' de cada String. É o mais rápido (O(1)).
+        System.out.println("2-I (HashSet): " + hashSet);
+
+        // --- 1-II: TreeSet (Árvore, ordem classificada) ---
+        // II. Armazena... em uma árvore rubro-negra, ordena...
+        
+        Set&lt;String&gt; treeSet = new TreeSet&lt;&gt;();
+        treeSet.add("Uva");
+        treeSet.add("Maçã");
+        treeSet.add("Pera");
+        treeSet.add("Abacaxi");
+        // A saída é classificada em ORDEM ALFABÉTICA (ordem natural).
+        // É mais lento (O(log n)) pois precisa manter a árvore ordenada.
+        System.out.println("1-II (TreeSet): " + treeSet);
+
+        // --- 3-III: LinkedHashSet (Hash + Lista Encadeada, ordem de inserção) ---
+        // III. ...Tabela Hash com uma lista encadeada... ordena... na ordem...
+        
+        Set&lt;String&gt; linkedHashSet = new LinkedHashSet&lt;&gt;();
+        linkedHashSet.add("Uva");
+        linkedHashSet.add("Maçã");
+        linkedHashSet.add("Pera");
+        linkedHashSet.add("Abacaxi");
+        // A saída é EXATAMENTE a ordem em que inserimos os itens.
+        System.out.println("3-III (LinkedHashSet): " + linkedHashSet);
+    }
+}
+// Saída Provável do Código:
+// Ordem de Inserção: Uva, Maçã, Pera, Abacaxi
+//
+// 2-I (HashSet): [Abacaxi, Pera, Uva, Maçã]
+// 1-II (TreeSet): [Abacaxi, Maçã, Pera, Uva]
+// 3-III (LinkedHashSet): [Uva, Maçã, Pera, Abacaxi]
+                    </code></pre>
+
+                    <h3>Conclusão</h3>
+                    <p>O código demonstra claramente as correlações:</p>
+                    <ul>
+                        <li><strong>HashSet (2-I):</strong> A ordem é "aleatória" (baseada em hash), provando a descrição I.</li>
+                        <li><strong>TreeSet (1-II):</strong> A ordem é alfabética (classificada), provando a descrição II.</li>
+                        <li><strong>LinkedHashSet (3-III):</strong> A ordem é idêntica à de inserção, provando a descrição III.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 12: Set (Duplicados)</h1>
+                
+                <p>Considere o código em linguagem Java (qualquer versão) a seguir, que apresenta a utilização de um conjunto para uma lista de nomes.</p>
+
+                <pre class="code-block">
+<code>
+public static void main(String[] args) {
+    Set&lt;String&gt; nomes = new HashSet&lt;&gt;();
+    nomes.add("João");
+    nomes.add("José");
+    nomes.add("Maria");
+    nomes.add("Carlos");
+    nomes.add("Maria");
+    nomes.add("João");
+    System.out.println(nomes);
+}
+</code>
+                </pre>
+
+                <p class="question-text">Em relação ao código apresentado, assinale a alternativa correta.</p>
+
+                <div class="options">
+                    <div class="option">(a) O código apresentado cria um conjunto do tipo List de “nomes”.</div>
+                    <div class="option option-correct" data-id="b">(b) O método imprime todos os nomes do conjunto, exceto os duplicados.</div>
+                    <div class="option">(c) O método imprime todos os nomes do conjunto na ordem em que foram inseridos.</div>
+                    <div class="option">(d) O método imprime todos os nomes do conjunto em ordem alfabética.</div>
+                    <div class="option">(e) O uso de um conjunto pode ser observado nos comandos “.add”.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (b)</h2>
+                    <p>A característica fundamental de um <code>Set</code> (Conjunto), e especificamente do <code>HashSet</code> usado no código, é que ele **não permite elementos duplicados**.</p>
+                    
+                    <h3>🖥️ Explicação com o Código</h3>
+                    
+                    <p>Vamos analisar o que acontece linha por linha no método <code>main</code>:</p>
+                    
+                    <pre class="code-block"><code>
+public static void main(String[] args) {
+    // 1. Você cria um CONJUNTO (Set) do tipo HashSet.
+    Set&lt;String&gt; nomes = new HashSet&lt;&gt;();
+
+    // 2. Adiciona os nomes
+    nomes.add("João");     // OK. Set agora é: [João]
+    nomes.add("José");     // OK. Set agora é: [João, José]
+    nomes.add("Maria");    // OK. Set agora é: [João, José, Maria]
+    nomes.add("Carlos");   // OK. Set agora é: [João, José, Maria, Carlos]
+
+    // 3. Tentativa de adicionar duplicados
+    nomes.add("Maria");    // "Maria" JÁ EXISTE. O Set ignora esta adição.
+    nomes.add("João");     // "João" JÁ EXISTE. O Set ignora esta adição.
+
+    // 4. Impressão
+    // O Set contém apenas as entradas únicas.
+    System.out.println(nomes);
+}
+// Saída Provável do Programa:
+// [Carlos, José, João, Maria] 
+// (A ordem não é garantida)
+                    </code></pre>
+                    <p>A saída prova que, embora você tenha chamado <code>.add()</code> seis vezes, o <code>Set</code> só armazenou os quatro valores únicos, exatamente como a alternativa (b) descreve.</p>
+                    
+                    <h3>❌ Por que as outras estão erradas?</h3>
+                    <ul>
+                        <li><strong>(a) Falso.</strong> O código cria um <code>Set</code>, não uma <code>List</code>.</li>
+                        <li><strong>(c) Falso.</strong> A ordem de inserção não é mantida por um <code>HashSet</code> (isso seria um <code>LinkedHashSet</code>).</li>
+                        <li><strong>(d) Falso.</strong> A ordem alfabética não é mantida por um <code>HashSet</code> (isso seria um <code>TreeSet</code>).</li>
+                        <li><strong>(e) Falso.</strong> O método <code>.add</code> é comum a muitas coleções. O que define o conjunto é a declaração <code>Set&lt;String&gt; ... = new HashSet&lt;&gt;()</code>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 13: HashSet (Hashing)</h1>
+                
+                <p>A classe Java HashSet é usada para criar uma Coleção que usa uma Tabela Hash para armazenamento... [texto omitido] ...Sobre a classe HashSet e as características de conjunto em Java, avalie as afirmativas a seguir.</p>
+
+                <ol style="list-style-type: upper-roman; margin-left: 20px; padding-left: 10px;">
+                    <li>( ) O HashSet possui como mecanismo de armazenamento de elementos o hashing.</li>
+                    <li>( ) O HashSet contém apenas elementos exclusivos, podendo ser nulos.</li>
+                    <li>( ) O HashSet mantém a ordem de inserção, além de salvar os HashCode.</li>
+                </ol>
+
+                <p class="question-text">Está correto o que se afirma em:</p>
+
+                <div class="options">
+                    <div class="option option-correct" data-id="a">(a) I e II, apenas.</div>
+                    <div class="option">(b) I, II e III, apenas.</div>
+                    <div class="option">(c) II e III, apenas.</div>
+                    <div class="option">(d) I e III, apenas.</div>
+                    <div class="option">(e) I, apenas.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (a) I e II, apenas.</h2>
+                    
+                    <h3>🖥️ Explicação com Código</h3>
+                    
+                    <p>Usaremos um <code>HashSet</code> para testar todas as três afirmações simultaneamente.</p>
+                    
+                    <pre class="code-block"><code>
+import java.util.HashSet;
+import java.util.Set;
+
+public class TesteHashSet {
+    public static void main(String[] args) {
+        
+        Set&lt;String&gt; meuSet = new HashSet&lt;&gt;();
+
+        // --- Demonstração de I e III (Hashing e Ordem) ---
+        
+        // I. O 'HashSet' usa 'hashing'. 
+        // III. O 'HashSet' NÃO mantém a ordem de inserção.
+        System.out.println("Ordem de Inserção: Zeta, Beta, Alfa");
+        meuSet.add("Zeta");   // Inserido primeiro
+        meuSet.add("Beta");   // Inserido em segundo
+        meuSet.add("Alfa");   // Inserido por último
+
+        // A saída NÃO será a ordem de inserção (Zeta, Beta, Alfa)
+        // A saída é determinada pelo 'hashCode' das strings.
+        System.out.println("Ordem de Recuperação: " + meuSet);
+        System.out.println("=> Afirmação I (usa hashing) é VERDADEIRA.");
+        System.out.println("=> Afirmação III (mantém ordem) é FALSA.");
+
+
+        // --- Demonstração de II (Exclusivos e Nulos) ---
+        System.out.println("\n--- Testando Exclusivos e Nulos ---");
+
+        // II. ...contém apenas elementos exclusivos...
+        boolean sucessoDuplicado = meuSet.add("Alfa"); // Tentando adicionar "Alfa" novamente
+        System.out.println("Add 'Alfa' duplicado: " + sucessoDuplicado); // Retorna 'false'
+        
+        // II. ...podendo ser nulos.
+        boolean sucessoNulo = meuSet.add(null);
+        System.out.println("Add 'null' (1ª vez): " + sucessoNulo); // Retorna 'true'
+        
+        // Tentando adicionar 'null' duplicado
+        boolean sucessoNulo2 = meuSet.add(null);
+        System.out.println("Add 'null' (2ª vez): " + sucessoNulo2); // Retorna 'false'
+
+        System.out.println("Conteúdo final: " + meuSet);
+        System.out.println("=> Afirmação II é VERDADEIRA.");
+    }
+}
+// Saída Provável:
+// Ordem de Inserção: Zeta, Beta, Alfa
+// Ordem de Recuperação: [Alfa, Beta, Zeta]
+// => Afirmação I (usa hashing) é VERDADEIRA.
+// => Afirmação III (mantém ordem) é FALSA.
+//
+// --- Testando Exclusivos e Nulos ---
+// Add 'Alfa' duplicado: false
+// Add 'null' (1ª vez): true
+// Add 'null' (2ª vez): false
+// Conteúdo final: [null, Alfa, Beta, Zeta]
+// => Afirmação II é VERDADEIRA.
+                    </code></pre>
+                    
+                    <h3>Conclusão</h3>
+                    <ul>
+                        <li><strong>I. (Verdadeiro):</strong> O nome <code>HashSet</code> significa "Conjunto baseado em Hash". Ele usa o <code>hashCode()</code> dos objetos para determinar onde armazená-los.</li>
+                        <li><strong>II. (Verdadeiro):</strong> O código prova que o <code>Set</code> ignora a tentativa de adicionar "Alfa" uma segunda vez e também ignora a tentativa de adicionar <code>null</code> uma segunda vez.</li>
+                        <li><strong>III. (Falso):</strong> O código prova que a ordem de recuperação (<code>[Alfa, Beta, Zeta]</code>) não tem relação com a ordem de inserção (<code>Zeta, Beta, Alfa</code>). A classe que mantém a ordem de inserção é a <code>LinkedHashSet</code>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 14: Map (Conceito)</h1>
+                
+                <p>A linguagem Java dispõe de um importante recurso, a interface “Map”. Nesse sentido, analise as asserções a seguir e a relação proposta entre elas.</p>
+
+                <ol style="list-style-type: upper-roman; margin-left: 20px; padding-left: 10px;">
+                    <li>( ) Um mapa é composto por um conjunto de associações entre um objeto-chave e um objeto-valor, sendo equivalente ao conceito de dicionário, presente em outras linguagens de programação.</li>
+                    <li>( ) O uso de mapas é bastante interessante, quando queremos buscar um objeto pela sua chave.</li>
+                </ol>
+
+                <p class="question-text">Analisando essas asserções, é correto afirmar que:</p>
+
+                <div class="options">
+                    <div class="option">(a) a primeira asserção é verdadeira e a segunda é falsa.</div>
+                    <div class="option">(b) a primeira asserção é falsa e a segunda é verdadeira.</div>
+                    <div class="option">(c) as duas asserções são falsas.</div>
+                    <div class="option option-correct" data-id="d">(d) as duas asserções são verdadeiras.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (d) as duas asserções são verdadeiras.</h2>
+                    <p>As duas afirmações não são apenas verdadeiras, mas a Asserção I (a estrutura) é o que torna a Asserção II (a utilidade) possível.</p>
+                    
+                    <h3>🗺️ Explicação com Código</h3>
+                    
+                    <p>Vamos usar um exemplo prático: um "dicionário" que armazena o CPF (a Chave) e o Nome (o Valor) de uma pessoa.</p>
+
+                    <pre class="code-block"><code>
+import java.util.Map;
+import java.util.HashMap;
+
+public class TesteMap {
+    public static void main(String[] args) {
+        
+        // --- Demonstração da Asserção I ---
+        // A interface Map (ex: HashMap) armazena "associações" (Key-Value)
+        // É um "Dicionário" de pessoas.
+        Map&lt;String, String&gt; dicionarioPessoas = new HashMap&lt;&gt;();
+        
+        // Criando as associações
+        dicionarioPessoas.put("111.222.333-44", "Ana Silva");
+        dicionarioPessoas.put("555.666.777-88", "Bruno Costa");
+        dicionE;rioPessoas.put("999.888.777-66", "Carla Dias");
+        
+        System.out.println("O Dicionário completo: " + dicionarioPessoas);
+
+        // --- Demonstração da Asserção II ---
+        // O "uso interessante" é buscar o Valor (Nome)
+        // usando a Chave (CPF). Isso é extremamente rápido.
+        
+        String cpfParaBuscar = "555.666.777-88";
+        // Usamos o método .get(chave)
+        String nomeEncontrado = dicionarioPessoas.get(cpfParaBuscar);
+        
+        System.out.println("\nBuscando pelo CPF: " + cpfParaBuscar);
+        System.out.println("Nome encontrado: " + nomeEncontrado); // Saída: Bruno Costa
+    }
+}
+                    </code></pre>
+                    
+                    <h3>Conclusão</h3>
+                    <ul>
+                        <li><strong>Asserção I (Verdadeira):</strong> O código mostra a criação de um "dicionário" (o <code>Map</code>) que armazena um conjunto de associações (Chave/Valor, como "CPF" -> "Nome").</li>
+                        <li><strong>Asserção II (Verdadeira):</strong> O código demonstra que o principal uso do <code>Map</code> é buscar o valor ("Bruno Costa") de forma eficiente usando o método <code>.get()</code> e passando a chave ("555.666.777-88").</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 15: Recursão (Fibonacci)</h1>
+                
+                <p>A utilização de recursividade... [texto omitido] ... Observe o trecho de código a seguir, realizado na linguagem Java, versão 8.</p>
+
+                <pre class="code-block">
+<code>
+public static BigInteger fibonacci(BigInteger number)
+{
+    if(number.equals(BigInteger.ZERO) ||
+       number.equals(BigInteger.ONE)) //casos básicos
+        return number;
+    else //passo de recursão
+        return fibonacci(number.subtract(BigInteger.ONE)).add(
+               fibonacci(number.subtract(TWO)));
+}
+</code>
+                </pre>
+
+                <ol style="list-style-type: upper-roman; margin-left: 20px; padding-left: 10px;">
+                    <li>( ) A codificação mostrada possui erro sintático, pois, nessa chamada recursiva, o método Fibonacci está chamando outro método para cálculo de mesmo nome, retornando uma chamada também com o mesmo nome de método.</li>
+                    <li>( ) A condição “number.equals(BigInteger.ZERO)” permite que todo trecho de código não necessite ser executado, uma vez que a estrutura “if…else” está limitando a execução caso o “if” inicial seja verdadeiro.</li>
+                    <li>( ) É possível realizar operações matemáticas por meio de métodos com cálculos predefinidos, seja para comparação, subtração ou adição numérica, passando como parâmetro o valor desejado.</li>
+                </ol>
+
+                <p class="question-text">Está correto o que se afirma em:</p>
+
+                <div class="options">
+                    <div class="option">(a) I e II, apenas.</div>
+                    <div class="option">(b) I, apenas.</div>
+                    <div class="option">(c) I e III, apenas.</div>
+                    <div class="option option-correct" data-id="d">(d) II e III, apenas.</div>
+                    <div class="option">(e) I, II e III, apenas.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (d) II e III, apenas.</h2>
+                    
+                    <h3>🖥️ Análise do Código</h3>
+                    <p>Vamos analisar as afirmativas com base no código, que calcula a sequência de Fibonacci usando recursão e a classe <code>BigInteger</code> para números grandes.</p>
+                    
+                    <h3>❌ Afirmativa I (Falsa)</h3>
+                    <p><strong>"A codificação mostrada possui erro sintático..."</strong></p>
+                    <p>Isto está falso. A afirmação descreve a definição de recursão como se fosse um erro. Um método recursivo é, por definição, um método que chama a si mesmo. A linha <code>return fibonacci(...).add(fibonacci(...));</code> mostra o método <code>fibonacci</code> chamando a si mesmo com valores menores. Isso não é um erro sintático, é a essência da recursão.</p>
+
+                    <h3>✅ Afirmativa II (Verdadeira)</h3>
+                    <p><strong>"A condição “number.equals(BigInteger.ZERO)”... limita a execução caso o “if” inicial seja verdadeiro."</strong></p>
+                    <p>Isto está verdadeiro. Esta é a <strong>"condição de parada"</strong> (ou caso básico) da recursão. O <code>if</code> e o <code>else</code> são mutuamente exclusivos. Se o número for 0 ou 1, o método executa <code>return number;</code> e termina imediatamente. O bloco <code>else</code>, que contém as chamadas recursivas, é completamente ignorado. É isso que impede que a recursão se torne um loop infinito.</p>
+                    
+                    
+                    <h3>✅ Afirmativa III (Verdadeira)</h3>
+                    <p><strong>"É possível realizar operações matemáticas por meio de métodos com cálculos predefinidos..."</strong></p>
+                    <p>Isto está verdadeiro. O código prova essa afirmação. Como <code>BigInteger</code> é uma classe (um objeto) e não um tipo primitivo (como <code>int</code>), não podemos usar os operadores matemáticos tradicionais (<code>+</code>, <code>-</code>, <code>==</code>). Somos obrigados a usar os métodos que a classe <code>BigInteger</code> fornece:</p>
+                    
+                    <ul>
+                        <li><strong>Comparação:</strong> <code>number.equals(BigInteger.ZERO)</code> (em vez de <code>number == 0</code>)</li>
+                        <li><strong>Subtração:</strong> <code>number.subtract(BigInteger.ONE)</code> (em vez de <code>number - 1</code>)</li>
+                        <li><strong>Adição:</strong> <code>... .add(...)</code> (em vez de <code>... + ...</code>)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 16: Conjuntos (Definição)</h1>
+                
+                <p>Na linguagem Java, é comum o uso da classe “Collection”, que tem classes-filhas para listas e conjuntos... [texto omitido] ...Em relação ao melhor uso dos conjuntos em linguagem Java, assinale a alternativa correta.</p>
+
+                <div class="options">
+                    <div class="option">(a) Exemplos de conjuntos são as classes List e Queue.</div>
+                    <div class="option">(b) Os conjuntos são definidos pela classe Vector, permitindo a duplicidade de elementos.</div>
+                    <div class="option">(c) Os conjuntos são uma coleção ordenada de elementos.</div>
+                    <div class="option">(d) Os conjuntos são definidos pela classe ArrayList.</div>
+                    <div class="option option-correct" data-id="e">(e) Os conjuntos são uma Collection que não permite elementos duplicados.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (e)</h2>
+                    <p>Esta é a característica fundamental que define um <strong>Set (Conjunto)</strong> em Java. Ele é modelado exatamente como um conjunto matemático: uma coleção de itens únicos.</p>
+                    
+
+[Image of Venn diagram showing unique sets]
+
+                    
+                    <h3>🖥️ Explicação com Código</h3>
+                    <p>A melhor forma de demonstrar isso é tentar adicionar um item duplicado a um <code>Set</code> e ver o que acontece. Usaremos a implementação mais comum, <code>HashSet</code>.</p>
+                    
+                    <pre class="code-block"><code>
+import java.util.HashSet;
+import java.util.Set;
+
+public class TesteConjunto {
+    public static void main(String[] args) {
+        
+        // Criamos um 'Set' (Conjunto) de Strings
+        Set&lt;String&gt; frutas = new HashSet&lt;&gt;();
+
+        System.out.println("--- Adicionando elementos ---");
+        
+        // .add() retorna 'true' se o item foi adicionado
+        System.out.println("Adicionando 'Maçã':   " + frutas.add("Maçã"));
+        System.out.println("Adicionando 'Banana': " + frutas.add("Banana"));
+        
+        System.out.println("\nSet atual: " + frutas);
+        System.out.println("Tamanho atual: " + frutas.size()); // Tamanho é 2
+        
+        System.out.println("\n--- Tentando adicionar um duplicado ---");
+        
+        // Tentando adicionar "Maçã" novamente
+        // O método .add() retornará 'false', pois o item já existe.
+        System.out.println("Adicionando 'Maçã' de novo: " + frutas.add("Maçã"));
+
+        // O 'Set' e seu tamanho não mudam
+        System.out.println("\nSet final: " + frutas);
+        System.out.println("Tamanho final: " + frutas.size()); // Tamanho continua 2
+    }
+}
+// Saída:
+// --- Adicionando elementos ---
+// Adicionando 'Maçã':   true
+// Adicionando 'Banana': true
+// Set atual: [Banana, Maçã]
+// Tamanho atual: 2
+//
+// --- Tentando adicionar um duplicado ---
+// Adicionando 'Maçã' de novo: false
+// Set final: [Banana, Maçã]
+// Tamanho final: 2
+                    </code></pre>
+                    <p>Como o código prova, a segunda tentativa de adicionar "Maçã" falhou (o método <code>add</code> retornou <code>false</code>) e o <code>Set</code> ignorou o elemento duplicado.</p>
+
+                    <h3>❌ Por que as outras estão erradas?</h3>
+                    <ul>
+                        <li><strong>(a) Falso.</strong> <code>List</code> (Lista) e <code>Queue</code> (Fila) são outras interfaces da <code>Collection</code>, distintas de <code>Set</code> (Conjunto).</li>
+                        <li><strong>(b) Falso.</strong> <code>Vector</code> é uma implementação de <code>List</code>, não de <code>Set</code>, e permite duplicidade.</li>
+                        <li><strong>(c) Falso.</strong> A interface <code>Set</code> em si não garante ordem. <code>HashSet</code> (o mais comum) não é ordenado. (<code>TreeSet</code> é ordenado por valor e <code>LinkedHashSet</code> é ordenado por inserção).</li>
+                        <li><strong>(d) Falso.</strong> <code>ArrayList</code> também é uma implementação de <code>List</code>, não de <code>Set</code>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 17: Map (entrySet / getKey)</h1>
+                
+                <p>Os Mapas de Hash são estruturas de dados indexados... [texto omitido] ...Considere a seguinte codificação em Java...</p>
+
+                <pre class="code-block">
+<code>
+Set set = hm.entrySet();
+Iterator iterator = set.iterator();
+while(iterator.hasNext()){
+    Map.Entry mentry = (Map.Entry)iterator.next();
+    System.out.print("A chave é: " + mentry.getKey() + "& o Valor é: ");   
+    System.out.println(mentry.getValue());
+}
+//Obtém valores baseado na chave
+String var = hm.get(2);
+System.out.println("Valor no índice 2 é: " + var);
+</code>
+                </pre>
+
+                <p class="question-text">Sobre o código anterior, assinale a alternativa correta.</p>
+
+                <div class="options">
+                    <div class="option">(a) A expressão “System.out.println” permite a exibição da saída do sistema em uma janela baseada em frames.</div>
+                    <div class="option option-correct" data-id="b">(b) O método mentry.getKey() serve para obter a chave da relação Hash, e o “mentry.getValue()”, o seu valor.</div>
+                    <div class="option">(c) O código utiliza-se de conjuntos, que são estruturas mais eficientes e mais rápidas do que os Mapas.</div>
+                    <div class="option">(d) A expressão “get(2)” ocasionará um erro no valor, pois, em Hash, as respostas devem ser do tipo inteiro.</div>
+                    <div class="option">(e) Em “Map.Entry mentry” teremos um erro de compilação, devido à incompatibilidade com a classe Iterator.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (b)</h2>
+                    
+                    <h3>🖥️ Análise do Código</h3>
+                    
+                    <p>O objetivo do primeiro bloco de código é percorrer todos os pares (chave-valor) que existem dentro do mapa <code>hm</code> (que presumivelmente é um <code>HashMap</code>).</p>
+                    
+                    <pre class="code-block"><code>
+// (hm é um Map, por exemplo: Map&lt;Integer, String&gt; hm)
+// hm.put(1, "ValorA"); hm.put(2, "ValorB");
+
+// 1. hm.entrySet() cria um CONJUNTO (Set) de todos os pares (Entries).
+//    Ex: [ (1, "ValorA"), (2, "ValorB") ]
+Set set = hm.entrySet();
+
+// 2. Criamos um Iterator para percorrer esse conjunto
+Iterator iterator = set.iterator();
+
+while(iterator.hasNext()){
+    // 4. iterator.next() pega o próximo par (ex: (1, "ValorA"))
+    //    O (Map.Entry) é um 'cast' necessário (versão antiga do Java).
+    Map.Entry mentry = (Map.Entry)iterator.next();
+
+    // 5. Esta é a linha da alternativa (b)
+    //    mentry.getKey()   -> Pega a chave do par (ex: 1)
+    //    mentry.getValue() -> Pega o valor do par (ex: "ValorA")
+    System.out.print("A chave é: " + mentry.getKey());    
+    System.out.println("& o Valor é: " + mentry.getValue());
+}
+// 6. O segundo bloco demonstra o acesso direto pela chave
+String var = hm.get(2); // Busca o valor associado à CHAVE 2
+System.out.println("Valor na chave 2 é: " + var); // Imprime "ValorB"
+                    </code></pre>
+                    
+                    <h3>❌ Por que as outras estão erradas?</h3>
+                    <ul>
+                        <li><strong>(a) Falso.</strong> <code>System.out.println</code> imprime a saída no **console** (terminal), não em uma janela gráfica (JFrame).</li>
+                        <li><strong>(c) Falso.</strong> O código usa um <code>Map</code> como estrutura principal. Ele usa um <code>Set</code> (o <code>entrySet</code>) apenas como um meio para iterar. <code>Set</code> e <code>Map</code> têm propósitos diferentes.</li>
+                        <li><strong>(d) Falso.</strong> <code>get(2)</code> busca o valor associado à <strong>chave 2</strong>. O tipo do valor (a "resposta") pode ser qualquer um (no código, é uma <code>String</code>). Não há regra que exija que o valor seja <code>int</code>.</li>
+                        <li><strong>(e) Falso.</strong> O <code>iterator.next()</code> de um <code>entrySet</code> retorna um objeto do tipo <code>Map.Entry</code>. O cast <code>(Map.Entry)</code> é a maneira correta de atribuir esse objeto à variável <code>mentry</code>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 18: TreeSet (Ordem Alfabética)</h1>
+                
+                <p>Analise o código a seguir em linguagem Java (qualquer versão), que cria um conjunto de nomes com a classe TreeSet.</p>
+
+                <pre class="code-block">
+<code>
+public static void main(String[] args) {
+    TreeSet&lt;String&gt; dset = new TreeSet&lt;String&gt;();
+    dset.add("Zoraide");
+    dset.add("Maria");
+    dset.add("Janete");
+    dset.add("João");
+    dset.add("Heitor");
+    Iterator&lt;String&gt; iterator = dset.iterator();
+    while (iterator.hasNext()) {
+        System.out.print(iterator.next() + " ");
+    }
+}
+</code>
+                </pre>
+
+                <p class="question-text">Em relação ao código apresentado, assinale a alternativa correta.</p>
+
+                <div class="options">
+                    <div class="option">(a) O código iterator.next() retorna o próximo nome por ordem de inserção.</div>
+                    <div class="option">(b) O código iterator.hasNext() retorna o próximo nome do conjunto em ordem alfabética.</div>
+                    <div class="option">(c) O código System.out.print(iterator.next() + " ") imprime os nomes por ordem de inserção.</div>
+                    <div class="option">(d) O código iterator.next() retorna o conjunto dos nomes em ordem alfabética.</div>
+                    <div class="option option-correct" data-id="e">(e) O código System.out.print(iterator.next() + " ") imprime os nomes em ordem alfabética.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (e)</h2>
+                    <p><code>O código System.out.print(iterator.next() + " ") imprime os nomes em ordem alfabética.</code></p>
+                    
+                    <h3>🖥️ Explicação com o Código</h3>
+                    <p>A linha mais importante do código é a primeira:</p>
+                    <pre class="code-block"><code>TreeSet&lt;String&gt; dset = new TreeSet&lt;String&gt;();</code></pre>
+                    <p>A característica fundamental de um <strong>TreeSet</strong> é que ele armazena seus elementos em uma estrutura de árvore (Red-Black Tree), o que garante que os elementos estarão <strong>automaticamente mantidos em ordem classificada</strong>.</p>
+                    
+                    
+                    <h3>Analisando a Execução:</h3>
+                    <pre class="code-block"><code>
+// Embora você tenha inserido os nomes "fora de ordem"...
+dset.add("Zoraide");
+dset.add("Maria");
+dset.add("Janete");
+dset.add("João");
+dset.add("Heitor");
+
+// ...o TreeSet os armazena internamente na ordem alfabética:
+// [Heitor, Janete, João, Maria, Zoraide]
+            </code></pre>
+                    
+                    <h3>O Loop (A Resposta):</h3>
+                    <pre class="code-block"><code>
+// O iterator de um TreeSet percorre a coleção na sua ordem classificada.
+while (iterator.hasNext()) {
+    // iterator.next() busca o próximo item NA ORDEM ALFABÉTICA.
+    System.out.print(iterator.next() + " ");
+}
+// Saída Esperada: Heitor Janete João Maria Zoraide 
+            </code></pre>
+
+                    <h3>❌ Por que as outras estão erradas?</h3>
+                    <ul>
+                        <li><strong>(a) e (c):</strong> Mencionam "ordem de inserção". Isso está incorreto; essa seria a característica de um <code>LinkedHashSet</code>.</li>
+                        <li><strong>(b):</strong> <code>iterator.hasNext()</code> retorna <code>true</code> ou <code>false</code> (um boolean), ele não retorna o nome.</li>
+                        <li><strong>(d):</strong> <code>iterator.next()</code> retorna <strong>um</strong> nome de cada vez, não o "conjunto dos nomes" (o conjunto inteiro).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 19: HashSet (Ordem)</h1>
+                
+                <p>Analise o código a seguir em linguagem Java (qualquer versão), que cria um conjunto de nomes com a classe HashSet.</p>
+
+                <pre class="code-block">
+<code>
+public static void main(String[] args) {
+    HashSet&lt;String&gt; dset = new HashSet&lt;String&gt;();
+    dset.add("Zoraide");
+    dset.add("Maria");
+    dset.add("Janete");
+    dset.add("João");
+    dset.add("Heitor");
+    Iterator&lt;String&gt; iterator = dset.iterator();
+    while (iterator.hasNext()) {
+        System.out.print(iterator.next() + " ");
+    }
+}
+</code>
+                </pre>
+
+                <p class="question-text">Em relação ao código, assinale a alternativa correta.</p>
+
+                <div class="options">
+                    <div class="option">(a) O código System.out.print(iterator.next() + " ") imprime os nomes por ordem de inserção.</div>
+                    <div class="option">(b) O código iterator.next() retorna o conjunto dos nomes em ordem alfabética.</div>
+                    <div class="option option-correct" data-id="c">(c) O código System.out.print(iterator.next() + " ") imprime os nomes não necessariamente na ordem em que foram inseridos.</div>
+                    <div class="option">(d) O código iterator.hasNext() retorna o próximo nome do conjunto em ordem alfabética.</div>
+                    <div class="option">(e) O código iterator.next() retorna o próximo nome em ordem de inserção.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (c)</h2>
+                    <p><code>O código System.out.print(iterator.next() + " ") imprime os nomes não necessariamente na ordem em que foram inseridos.</code></p>
+                    
+                    <h3>🖥️ Explicação com o Código</h3>
+                    <p>A linha mais importante do código é a primeira:</p>
+                    <pre class="code-block"><code>HashSet&lt;String&gt; dset = new HashSet&lt;String&gt;();</code></pre>
+                    <p>A característica fundamental de um <strong>HashSet (Conjunto de Hash)</strong> é que ele armazena seus elementos em uma tabela hash. A prioridade desta estrutura é a <strong>velocidade</strong> para adicionar (<code>.add()</code>) e verificar (<code>.contains()</code>), que ela faz em tempo O(1) (constante).</p>
+                    
+                    
+                    <h3>A Consequência: Sem Ordem Garantida</h3>
+                    <p>Para alcançar essa velocidade, o <code>HashSet</code> não se preocupa com a ordem:</p>
+                    <ul>
+                        <li>Não armazena os itens na ordem em que foram inseridos (como um <code>LinkedHashSet</code> faria).</li>
+                        <li>Não armazena os itens em ordem alfabética (como um <code>TreeSet</code> faria).</li>
+                    </ul>
+                    <p>A ordem de um <code>HashSet</code> é "aparentemente aleatória", pois é determinada pelo <code>hashCode()</code> de cada objeto.</p>
+
+                    <h3>Analisando a Execução:</h3>
+                    <pre class="code-block"><code>
+// ... (adicionando "Zoraide", "Maria", "Janete", "João", "Heitor")
+
+// O iterator percorre o HashSet na ordem determinada pela tabela hash.
+while (iterator.hasNext()) {
+    System.out.print(iterator.next() + " ");
+}
+// Saída Provável:
+// Maria Zoraide Heitor João Janete 
+// (A ordem exata pode mudar, mas NÃO é a de inserção/alfabética)
+                    </code></pre>
+                    <p>A alternativa (c) é a única que descreve perfeitamente esse comportamento.</p>
+                    
+                    <h3>❌ Por que as outras estão erradas?</h3>
+                    <ul>
+                        <li><strong>(a) e (e):</strong> Mencionam "ordem de inserção". Incorreto (isso é <code>LinkedHashSet</code>).</li>
+                        <li><strong>(b) e (d):</strong> Mencionam "ordem alfabética". Incorreto (isso é <code>TreeSet</code>).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 20: Pilha de Chamadas (Call Stack)</h1>
+                
+                <p>Quando um programa está sendo executado, uma seção especial do espaço de memória... [texto omitido] ... Sobre o que foi apresentado, observe as asserções a seguir e as relações propostas entre elas.</p>
+
+                <div style="background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 5px; padding: 10px 15px;">
+                    <p><strong>I.</strong> Quando a função termina a execução, o código de função é removido ou retirado do topo da pilha, que permite apenas que itens sejam adicionados ao topo; por isso, é chamada de estrutura de dados LIFO (Last-In-First-Out).</p>
+                    <p style="text-align: center; font-weight: bold;">PORQUE</p>
+                    <p><strong>II.</strong> Cada vez que uma função é chamada, o código da função, bem como o espaço para os argumentos da função e os valores de retorno, são colocados no topo da Pilha de Chamadas.</p>
+                </div>
+
+                <p class="question-text" style="margin-top: 15px;">Analisando as asserções anteriores, assinale a alternativa correta.</p>
+
+                <div class="options">
+                    <div class="option option-correct" data-id="a">(a) As asserções I e II são proposições verdadeiras, e a II é uma justificativa para I.</div>
+                    <div class="option">(b) A asserção II é uma proposição verdadeira, e a I é uma proposição falsa.</div>
+                    <div class="option">(c) As asserções I e II são proposições verdadeiras, mas a II não é uma justificativa para I.</div>
+                    <div class="option">(d) As asserções I e II são proposições falsas.</div>
+                    <div class="option">(e) A asserção I é uma proposição verdadeira, e a II é uma proposição falsa.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (a)</h2>
+                    <p>As asserções I e II são proposições verdadeiras, e a II é uma justificativa para I.</p>
+                    
+                    <h3>🖥️ Explicando com Código</h3>
+                    <p>A melhor maneira de entender a pilha é com funções aninhadas (uma chamando a outra). A recursão é um caso especial disso, onde uma função chama a si mesma. Vamos usar um exemplo simples:</p>
+                    
+                    <pre class="code-block"><code>
+public class PilhaDeChamada {
+
+    public static void main(String[] args) {
+        System.out.println("1. Início do 'main'");
+        metodoA(); // Chamada 1
+        System.out.println("5. Fim do 'main'");
+    }
+
+    public static void metodoA() {
+        System.out.println(" 2. Início do 'metodoA'");
+        metodoB(); // Chamada 2
+        System.out.println(" 4. Fim do 'metodoA'");
+    }
+
+    public static void metodoB() {
+        System.out.println("  3. Início e Fim do 'metodoB' (Topo da Pilha)");
+        // Este método não chama mais ninguém, então ele termina.
+    }
+}
+                    </code></pre>
+                    
+                    <h3>👣 Rastreando a Pilha de Chamadas (Call Stack)</h3>
+                    
+                    <p>Vamos ver o que acontece na memória passo a passo:</p>
+                    <ol>
+                        <li><strong>Passo 1:</strong> <code>main</code> é chamado. <strong>(Asserção II)</strong> <code>main</code> é colocado na pilha.<br>
+                            <strong>Pilha:</strong> <code>[ main ]</code></li>
+                        <li><strong>Passo 2:</strong> <code>main</code> chama <code>metodoA</code>. <strong>(Asserção II)</strong> <code>metodoA</code> é colocado no topo.<br>
+                            <strong>Pilha:</strong> <code>[ metodoA ]</code> &lt;-- TOPO, <code>[ main ]</code></li>
+                        <li><strong>Passo 3:</strong> <code>metodoA</code> chama <code>metodoB</code>. <strong>(Asserção II)</strong> <code>metodoB</code> é colocado no topo.<br>
+                            <strong>Pilha:</strong> <code>[ metodoB ]</code> &lt;-- TOPO, <code>[ metodoA ]</code>, <code>[ main ]</code></li>
+                        <li><strong>Passo 4:</strong> <code>metodoB</code> termina. <strong>(Asserção I)</strong> <code>metodoB</code> (o "Last-In") é removido do topo (o "First-Out"). A execução volta para <code>metodoA</code>.<br>
+                            <strong>Pilha:</strong> <code>[ metodoA ]</code> &lt;-- TOPO, <code>[ main ]</code></li>
+                        <li><strong>Passo 5:</strong> <code>metodoA</code> termina. <strong>(Asserção I)</strong> <code>metodoA</code> é removido. A execução volta para <code>main</code>.<br>
+                            <strong>Pilha:</strong> <code>[ main ]</code> &lt;-- TOPO</li>
+                        <li><strong>Passo 6:</strong> <code>main</code> termina. <strong>(Asserção I)</strong> <code>main</code> é removido. A pilha fica vazia.</li>
+                    </ol>
+
+                    <h3>Conclusão</h3>
+                    <ul>
+                        <li><strong>Asserção II (Verdadeira):</strong> O código mostra que cada chamada (<code>main</code>, <code>metodoA</code>, <code>metodoB</code>) é "empilhada" no topo.</li>
+                        <li><strong>Asserção I (Verdadeira):</strong> O código mostra que quando uma função termina (<code>metodoB</code>), ela é "desempilhada" do topo. O Último a Entrar (<code>metodoB</code>) foi o Primeiro a Sair. Isso é LIFO.</li>
+                        <li><strong>Relação (II justifica I):</strong> CORRETO. <strong>PORQUE</strong> as funções novas são sempre colocadas no topo (II), a execução da função anterior é pausada e não pode terminar até que a nova (que está "em cima") seja removida primeiro (I).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <button class="nav-arrow" id="prev-btn" title="Anterior">&larr;</button>
         <button class="nav-arrow" id="next-btn" title="Próximo">&rarr;</button>
     </div>
