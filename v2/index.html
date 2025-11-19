@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +15,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="search-wrapper">
+        <input type="text" id="search-input" placeholder="🔍 Digite para buscar (ex: Java, Média, Set)...">
+        <div id="search-results"></div>
+    </div>
+    <div id="progress-container"><div id="progress-bar"></div></div>
 
     <div id="quiz-carousel">
         <div id="slide-counter"></div>
@@ -1442,6 +1455,219 @@ public class PilhaDeChamada {
                         <li><strong>Asserção I (Verdadeira):</strong> O código mostra que quando uma função termina (<code>metodoB</code>), ela é "desempilhada" do topo. O Último a Entrar (<code>metodoB</code>) foi o Primeiro a Sair. Isso é LIFO.</li>
                         <li><strong>Relação (II justifica I):</strong> CORRETO. <strong>PORQUE</strong> as funções novas são sempre colocadas no topo (II), a execução da função anterior é pausada e não pode terminar até que a nova (que está "em cima") seja removida primeiro (I).</li>
                     </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 21: Intervalo de Confiança ($\sigma$)</h1>
+                
+                <p>Uma pesquisa selecionou 26 canetas, verificando um desvio padrão de $s = 0,1$ grama. Supondo distribuição normal, construa um intervalo de confiança de 99% para o desvio padrão populacional ($\sigma$).</p>
+
+                <div class="options">
+                    <div class="option option-correct" data-id="a">(a) Com 99% de confiança: $0,073 < \sigma < 0,155$ grama.</div>
+                    <div class="option">(b) Com 99% de confiança: $0,057 < \sigma < 0,141$ grama.</div>
+                    <div class="option">(c) Com 99% de confiança: $0,089 < \sigma < 0,171$ grama.</div>
+                    <div class="option">(d) Com 99% de confiança: $0,092 < \sigma < 0,180$ grama.</div>
+                    <div class="option">(e) Com 99% de confiança: $0,064 < \sigma < 0,145$ grama.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (a)</h2>
+                    <p>Utilizamos a distribuição <strong>Qui-Quadrado ($\chi^2$)</strong>.</p>
+                    
+                    <h3>📝 Cálculos</h3>
+                    <p>Dados: $n=26$, $s=0,1$, $GL=25$. Valores críticos $\chi^2$ para 99%:</p>
+                    <ul>
+                        <li>$\chi^2_{inf} = 10,520$</li>
+                        <li>$\chi^2_{sup} = 46,928$</li>
+                    </ul>
+                    
+                    <p>Fórmula do Intervalo:</p>
+                    <p>$$ \sqrt{\frac{(n-1)s^2}{\chi^2_{sup}}} < \sigma < \sqrt{\frac{(n-1)s^2}{\chi^2_{inf}}} $$</p>
+                    
+                    <p>Substituindo:</p>
+                    <p>$$ \text{Inf} = \sqrt{\frac{25 \cdot 0,01}{46,928}} \approx 0,073 $$</p>
+                    <p>$$ \text{Sup} = \sqrt{\frac{25 \cdot 0,01}{10,520}} \approx 0,155 $$</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 22: Média (T-Student)</h1>
+                
+                <p>Em uma amostra de $n=60$ micro-ondas, a média de custos de reparo é $\bar{x} = R\$170,00$, com desvio padrão $s = R\$18,00$. Construa um IC de 99%.</p>
+
+                <div class="options">
+                    <div class="option option-correct" data-id="a">(a) IC = $(163,82 ; 176,19)$</div>
+                    <div class="option">(b) IC = $(164,74 ; 175,26)$</div>
+                    <div class="option">(c) IC = $(164,13 ; 176,87)$</div>
+                    <div class="option">(d) IC = $(166,13 ; 173,87)$</div>
+                    <div class="option">(e) IC = $(165,98 ; 174,02)$</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (a)</h2>
+                    <p>Usamos <strong>T-Student</strong> pois $\sigma$ é desconhecido.</p>
+
+                    <h3>📝 Cálculos</h3>
+                    <p><strong>1. Erro Padrão (EP):</strong></p>
+                    <p>$$ EP = \frac{s}{\sqrt{n}} = \frac{18}{\sqrt{60}} \approx 2,3238 $$</p>
+
+                    <p><strong>2. Margem de Erro ($E$):</strong></p>
+                    <p>Para $GL=59$ e 99%, temos $t \approx 2,662$.</p>
+                    <p>$$ E = t \cdot EP = 2,662 \cdot 2,3238 \approx 6,186 $$</p>
+
+                    <p><strong>3. Intervalo:</strong></p>
+                    <p>$$ 170 \pm 6,186 \Rightarrow [163,82 ; 176,19] $$</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 23: Estimação Intervalar</h1>
+                
+                <p>Para estimar anúncios no YouTube, obteve-se média amostral $\bar{x} = 4$ vídeos e margem de erro calculada de $E = 1,2$. Com 95% de confiança, é correto afirmar:</p>
+
+                <div class="options">
+                    <div class="option">(a) A média populacional está entre 2,8 e 4.</div>
+                    <div class="option">(b) A média populacional está entre 1,2 e 4.</div>
+                    <div class="option">(c) A média populacional está entre 1,2 e 5,2.</div>
+                    <div class="option option-correct" data-id="d">(d) A média populacional está entre 2,8 e 5,2.</div>
+                    <div class="option">(e) A média populacional está entre 4 e 8.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (d)</h2>
+                    <p>Como a Margem de Erro ($E$) já foi dada, o cálculo é direto.</p>
+                    
+                    <p>$$ IC = [\bar{x} - E ; \bar{x} + E] $$</p>
+                    <p>$$ IC = [4 - 1,2 ; 4 + 1,2] $$</p>
+                    <p>$$ IC = [2,8 ; 5,2] $$</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 24: Juros (Pequena Amostra)</h1>
+                
+                <p>Amostra de $n=20$ instituições. Média de juros $\bar{x} = 9,48\%$, desvio padrão $s = 0,42\%$. Construa um IC de 99%.</p>
+
+                <div class="options">
+                    <div class="option option-correct" data-id="a">(a) IC = $(9,21 ; 9,75)$</div>
+                    <div class="option">(b) IC = $(9,36 ; 9,6)$</div>
+                    <div class="option">(c) IC = $(9,33 ; 9,63)$</div>
+                    <div class="option">(d) IC = $(9,15 ; 9,81)$</div>
+                    <div class="option">(e) IC = $(9,4 ; 9,56)$</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (a)</h2>
+                    <p>Amostra pequena ($n < 30$) exige tabela <strong>T-Student</strong>.</p>
+
+                    <h3>📝 Cálculos</h3>
+                    <p>Dados: $GL = 19$, $t_{critico} = 2,861$.</p>
+                    
+                    <p><strong>Erro Padrão:</strong> $$ \frac{0,42}{\sqrt{20}} \approx 0,0939 $$</p>
+                    <p><strong>Margem de Erro:</strong> $$ E = 2,861 \cdot 0,0939 \approx 0,2686 $$</p>
+                    <p><strong>Intervalo:</strong> $$ 9,48 \pm 0,27 \Rightarrow (9,21 ; 9,75) $$</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 25: Fórmula da Margem de Erro</h1>
+                
+                <p>A margem de erro é calculada como $E = z_c \cdot \frac{\sigma}{\sqrt{n}}$. Se um pesquisador encontrou $E = 0,019$ para uma amostra com média $\bar{x} = 3,15$ min, qual é a estimativa da média populacional $\mu$?</p>
+
+                <div class="options">
+                    <div class="option">(a) $0,07 < \mu < 3,15$</div>
+                    <div class="option">(b) $3,08 < \mu < 3,22$</div>
+                    <div class="option">(c) $3,131 < \mu < 3,5$</div>
+                    <div class="option option-correct" data-id="d">(d) $3,131 < \mu < 3,169$</div>
+                    <div class="option">(e) $0,019 < \mu < 0,07$</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (d)</h2>
+                    <p>Apesar da fórmula complexa no enunciado, o valor do erro já foi dado: $E = 0,019$.</p>
+                    
+                    <p>Basta aplicar:</p>
+                    <p>$$ \bar{x} - E < \mu < \bar{x} + E $$</p>
+                    <p>$$ 3,15 - 0,019 < \mu < 3,15 + 0,019 $$</p>
+                    <p>$$ 3,131 < \mu < 3,169 $$</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 26: Distribuição Amostral</h1>
+                
+                <p>Por definição, a média das médias é $\mu_{\bar{x}} = \mu$ e o erro padrão é $\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$. Dados: Média $\mu = 3.000$, Desvio $\sigma = 750$. Calcule para amostra $n=64$.</p>
+
+                <div class="options">
+                    <div class="option">(a) $\mu_{\bar{x}} = 3000$ e $\sigma_{\bar{x}} = 64$</div>
+                    <div class="option">(b) $\mu_{\bar{x}} = 3750$ e $\sigma_{\bar{x}} = 93,75$</div>
+                    <div class="option">(c) $\mu_{\bar{x}} = 3000$ e $\sigma_{\bar{x}} = 750$</div>
+                    <div class="option option-correct" data-id="d">(d) $\mu_{\bar{x}} = 3000$ e $\sigma_{\bar{x}} = 93,75$</div>
+                    <div class="option">(e) $\mu_{\bar{x}} = 3000$ e $\sigma_{\bar{x}} = 11,71$</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (d)</h2>
+                    
+                    <h3>1. Média ($\mu_{\bar{x}}$)</h3>
+                    <p>É igual à média da população: $$ \mu_{\bar{x}} = 3.000 $$</p>
+
+                    <h3>2. Erro Padrão ($\sigma_{\bar{x}}$)</h3>
+                    <p>$$ \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{750}{\sqrt{64}} $$</p>
+                    <p>$$ \sigma_{\bar{x}} = \frac{750}{8} = 93,75 $$</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 27: Erro Padrão</h1>
+                
+                <p>Contas de água com média $R\$150,00$ e desvio padrão $\sigma = 15$. Para amostras de $n=25$, quais são a média $\mu_{\bar{x}}$ e o erro padrão $\sigma_{\bar{x}}$?</p>
+
+                <div class="options">
+                    <div class="option">(a) $\mu_{\bar{x}}=150$ e $\sigma_{\bar{x}}=5$</div>
+                    <div class="option">(b) $\mu_{\bar{x}}=15$ e $\sigma_{\bar{x}}=3$</div>
+                    <div class="option">(c) $\mu_{\bar{x}}=450$ e $\sigma_{\bar{x}}=5$</div>
+                    <div class="option">(d) $\mu_{\bar{x}}=150$ e $\sigma_{\bar{x}}=15$</div>
+                    <div class="option option-correct" data-id="e">(e) $\mu_{\bar{x}}=150$ e $\sigma_{\bar{x}}=3$</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (e)</h2>
+                    
+                    <p><strong>Média:</strong> Mantém-se igual. $\mu_{\bar{x}} = 150$.</p>
+                    
+                    <p><strong>Erro Padrão:</strong></p>
+                    <p>$$ \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{15}{\sqrt{25}} $$</p>
+                    <p>$$ \sigma_{\bar{x}} = \frac{15}{5} = 3 $$</p>
                 </div>
             </div>
         </div>

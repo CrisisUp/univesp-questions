@@ -1,172 +1,282 @@
-/* === NOVO: Variáveis CSS === */
-/* Se você mudar o tamanho do container, as setas se ajustam! */
+/* === Variáveis Globais (Fácil manutenção) === */
 :root {
-    --container-width: 750px; /* Largura do conteúdo */
-    --arrow-width: 45px;      /* Tamanho da seta */
-    --arrow-gap: 25px;        /* Espaço da seta para o conteúdo */
+    --primary-color: #0056b3;
+    --success-color: #28a745; /* Verde Sucesso */
+    --error-color: #dc3545;   /* Vermelho Erro */
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --code-bg: #2d2d2d;
+    
+    --container-width: 750px;
+    --arrow-width: 45px;
 }
 
-/* === MUDADO: Configurações Globais === */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f0f2f5;
-    color: #333;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     line-height: 1.6;
-    margin: 0; /* Limpa margens padrão */
-    padding: 0; /* Limpa preenchimentos padrão */
+    margin: 0;
+    padding: 0;
 }
 
-/* === MUDADO: Carrossel Wrapper === */
+/* === Barra de Progresso === */
+#progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background-color: #e0e0e0;
+    z-index: 100;
+}
+
+#progress-bar {
+    height: 100%;
+    background-color: var(--success-color);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* === Layout === */
 #quiz-carousel {
     position: relative;
     width: 100%;
     max-width: var(--container-width);
-    margin: 40px auto; /* Adiciona margem em cima/baixo e centra horizontalmente */
-    box-sizing: border-box; /* Garante que o padding não quebre o layout */
+    margin: 60px auto 40px; /* Mais espaço no topo para a barra */
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
-/* === Slides (Sem alteração) === */
 .question-slide {
     display: none;
-    width: 100%;
+    animation: fadeIn 0.4s ease;
 }
+
 .question-slide.slide-active {
     display: block;
 }
 
-/* Container Principal (Sem alteração) */
-.quiz-container {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    padding: 25px 35px;
-    width: 100%;
-    box-sizing: border-box;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Cabeçalhos (Sem alteração) */
+.quiz-container {
+    background-color: var(--card-bg);
+    border-radius: 12px; /* Bordas mais suaves */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08); /* Sombra mais moderna */
+    padding: 30px 40px;
+}
+
+/* === Tipografia === */
 h1 {
-    color: #0056b3;
+    color: var(--primary-color);
+    font-size: 1.5rem;
     border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     margin-top: 0;
 }
-h2, h3 {
-    color: #0056b3;
-}
 
-/* === ALTERADO: Bloco de Código === */
-.code-block {
-    background-color: #2d2d2d;
-    color: #f8f8f2;
-    font-family: "Courier New", Courier, monospace;
-    
-    /* Espaçamento INTERNO (dentro do card) */
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
-    
-    border-radius: 5px;
-    overflow-x: auto;
-    font-size: 0.95em;
-
-    /* Espaçamento EXTERNO (entre o texto e o card) */
-    margin-top: 8px; /* <-- Reduzido */
-    margin-bottom: 15px; 
-}
-
-/* Texto da Questão (Sem alteração) */
 .question-text {
-    font-weight: bold;
-    font-size: 1.1em;
+    font-weight: 600;
+    font-size: 1.15em;
+    margin-top: 25px;
+    color: #222;
+}
+
+/* === Blocos de Código Compactos === */
+.code-block {
+    /* 1. Fonte Monoespaçada Robusta */
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    font-size: 0.85em; /* Um pouco menor para caber mais código */
+    
+    /* 2. Cores e Bordas */
+    background-color: var(--code-bg); /* Fundo escuro */
+    color: #f8f8f2;                   /* Texto claro */
+    border-radius: 5px;               /* Cantos levemente arredondados */
+    border-left: 4px solid var(--primary-color); /* Detalhe lateral */
+
+    /* 3. Redução do "Respiro" (Espaçamento) */
+    padding: 6px 10px;  /* Reduzido de 12px para 6px verticalmente */
+    margin: 10px 0;     /* Reduzido o espaço entre o texto e o código */
+    line-height: 1.3;   /* Linhas mais próximas umas das outras */
+
+    /* 4. Comportamento */
+    overflow-x: auto;   /* Barra de rolagem se o código for longo */
+    white-space: pre;   /* Respeita os espaços e quebras de linha do HTML */
+}
+
+/* === Opções Interativas (A Grande Mudança) === */
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     margin-top: 20px;
 }
 
-/* Opções (Sem alteração) */
 .options .option {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 12px;
-    margin-bottom: 10px;
-    cursor: default;
+    background-color: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
 }
 
-/* Destaque (Sem alteração) */
-.option-correct-highlight {
+.options .option:hover {
+    border-color: var(--primary-color);
+    background-color: #f9fbff;
+    transform: translateX(5px); /* Efeito de movimento leve */
+}
+
+/* Estados de Feedback */
+.option.correct {
     background-color: #d4edda !important;
-    border-color: #c3e6cb !important;
-    color: #155724 !important;
-    font-weight: bold;
+    border-color: var(--success-color) !important;
+    color: #155724;
 }
 
-/* Botão de Resposta (Sem alteração) */
+.option.wrong {
+    background-color: #f8d7da !important;
+    border-color: var(--error-color) !important;
+    color: #721c24;
+    opacity: 0.7;
+}
+
+/* Quando o usuário já respondeu, desativar cliques */
+.options.disabled .option {
+    pointer-events: none;
+}
+
+/* Botão e Resposta */
 .toggle-answer-btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 12px 20px;
-    font-size: 1em;
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 6px;
+    padding: 10px 20px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-    margin-top: 15px;
-}
-.toggle-answer-btn:hover {
-    background-color: #0056b3;
+    margin-top: 20px;
+    transition: all 0.3s;
+    display: block;
+    width: 100%;
 }
 
-/* Seção da Resposta (Sem alteração) */
+.toggle-answer-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
 .answer-section {
     margin-top: 20px;
     padding: 20px;
-    border-top: 2px solid #eee;
-    background-color: #fdfdfd;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 5px solid var(--success-color);
 }
-.answer-section ul { padding-left: 20px; }
-.answer-section li { margin-bottom: 10px; }
 
-/* === MUDADO: Botões de Navegação (Setas) === */
+/* === Navegação === */
 .nav-arrow {
-    position: fixed; /* Fica fixo na tela */
-    top: 50vh; /* Fica a 50% da altura da TELA */
-    transform: translateY(-50%); /* Centraliza verticalmente */
-    
-    background-color: rgba(0, 86, 179, 0.8);
-    color: white;
-    border: none;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     border-radius: 50%;
-    width: var(--arrow-width);
-    height: var(--arrow-width);
+    width: 50px;
+    height: 50px;
     font-size: 24px;
-    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
     z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .nav-arrow:hover {
-    background-color: rgba(0, 86, 179, 1);
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
 }
 
-/* === MUDADO: Posição das Setas usando calc() === */
-#prev-btn {
-    /* (Metade da Tela) - (Metade do Conteúdo) - (Tamanho da Seta) - (Espaço) */
-    left: calc(50% - (var(--container-width) / 2) - var(--arrow-width) - var(--arrow-gap));
-}
-#next-btn {
-    /* Mesma lógica, mas vindo da direita */
-    right: calc(50% - (var(--container-width) / 2) - var(--arrow-width) - var(--arrow-gap));
+#prev-btn { left: 20px; }
+#next-btn { right: 20px; }
+
+/* Mobile */
+@media (max-width: 800px) {
+    .nav-arrow {
+        top: auto;
+        bottom: 20px;
+        transform: none;
+    }
+    #prev-btn { left: 20px; }
+    #next-btn { right: 20px; }
 }
 
+/* === Barra de Busca === */
+#search-wrapper {
+    position: relative;
+    max-width: var(--container-width);
+    margin: 20px auto 10px;
+    padding: 0 20px;
+    z-index: 200; /* Fica acima de tudo */
+}
 
-/* === Contador (Sem alteração) === */
-#slide-counter {
+#search-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura */
+    transition: border-color 0.3s;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(0, 86, 179, 0.2);
+}
+
+/* Lista de Resultados (Dropdown) */
+#search-results {
     position: absolute;
-    top: -30px;
-    right: 10px;
-    font-size: 0.9em;
+    top: 100%;
+    left: 20px;
+    right: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-height: 300px;
+    overflow-y: auto;
+    display: none; /* Oculto por padrão */
+}
+
+.search-item {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    font-size: 0.95em;
     color: #555;
-    font-weight: bold;
+}
+
+.search-item:hover {
+    background-color: #f0f7ff;
+    color: var(--primary-color);
+}
+
+.search-item strong {
+    color: var(--primary-color);
+    display: block;
+    font-size: 0.85em;
+    margin-bottom: 3px;
 }
