@@ -1672,6 +1672,305 @@ public class PilhaDeChamada {
             </div>
         </div>
 
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 28: Probabilidade (Leões)</h1>
+                
+                <p>O peso médio dos leões é $\mu = 190kg$ com desvio padrão $\sigma = 14kg$. Qual é a probabilidade de que uma amostra de $n=49$ leões tenha média diferente da populacional por no máximo 2%?</p>
+
+                <div class="options">
+                    <div class="option">(a) 91,87%.</div>
+                    <div class="option option-correct" data-id="b">(b) 94,26%.</div>
+                    <div class="option">(c) 98,74%.</div>
+                    <div class="option">(d) 81,25%.</div>
+                    <div class="option">(e) 88,72%.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (b)</h2>
+                    <p>Utilizamos a <strong>Distribuição Amostral das Médias</strong>, calculando o Erro Padrão e o Escore Z.</p>
+                    
+                    
+                    <h3>📝 Sequência de Cálculos</h3>
+                    
+                    <p><strong>1. Intervalo de Interesse (2%):</strong></p>
+                    <p>$$ \text{Margem} = 190 \cdot 0,02 = 3,8 \text{ kg} $$</p>
+                    <p>Queremos a probabilidade entre $190 \pm 3,8$, ou seja: $$ [186,2 ; 193,8] $$</p>
+
+                    <p><strong>2. Erro Padrão ($\sigma_{\bar{x}}$):</strong></p>
+                    <p>$$ \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{14}{\sqrt{49}} = \frac{14}{7} = 2 $$</p>
+
+                    <p><strong>3. Escore Z (Padronização):</strong></p>
+                    <p>$$ Z = \frac{\bar{x} - \mu}{\sigma_{\bar{x}}} = \frac{193,8 - 190}{2} = 1,9 $$</p>
+                    <p>O intervalo Z é de $-1,9$ a $+1,9$.</p>
+
+                    <p><strong>4. Tabela Normal e Resultado:</strong></p>
+                    <p>Consultando a tabela Z, a área entre $-1,9$ e $1,9$ é:</p>
+                    <p>$$ P = 0,9713 - 0,0287 = 0,9426 $$</p>
+                    <p>$$ 0,9426 \cdot 100 = \mathbf{94,26\%} $$</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 29: Probabilidade (Gastos com Apps)</h1>
+                
+                <p>Gastos médios $\mu = R\$250,00$ com desvio padrão $\sigma = R\$20,00$. Selecionando aleatoriamente $n=16$ pessoas, qual a probabilidade de a média amostral ser menor que $R\$262,00$?</p>
+
+                <div class="options">
+                    <div class="option">(a) 86,72%.</div>
+                    <div class="option">(b) 90,87%.</div>
+                    <div class="option option-correct" data-id="c">(c) 99,18%.</div>
+                    <div class="option">(d) 80,25%.</div>
+                    <div class="option">(e) 94,20%.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (c)</h2>
+                    <p>Como estamos lidando com a média de uma amostra ($n=16$), usamos o <strong>Erro Padrão</strong> para calcular o Z-Score.</p>
+                    
+
+                    <h3>📝 Sequência de Cálculos</h3>
+                    
+                    <p><strong>1. Erro Padrão ($\sigma_{\bar{x}}$):</strong></p>
+                    <p>$$ \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{20}{\sqrt{16}} = \frac{20}{4} = 5 $$</p>
+
+                    <p><strong>2. Escore Z:</strong></p>
+                    <p>$$ Z = \frac{\bar{x} - \mu}{\sigma_{\bar{x}}} = \frac{262 - 250}{5} = \frac{12}{5} = 2,40 $$</p>
+
+                    <p><strong>3. Tabela Normal e Conclusão:</strong></p>
+                    <p>Queremos a probabilidade menor que 262 ($P(Z < 2,40)$), ou seja, a área à esquerda na curva.</p>
+                    <p>Consultando a tabela para $Z=2,40$, a área é $0,9918$.</p>
+                    <p>$$ 0,9918 \times 100 = \mathbf{99,18\%} $$</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 30: Serialização (Asserções)</h1>
+                
+                <p>A serialização é um mecanismo de conversão do estado de um objeto em um fluxo de bytes. Sobre isso, observe as asserções a seguir.</p>
+
+                <div style="background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 5px; padding: 10px 15px;">
+                    <p><strong>I.</strong> ObjectOutputStream possui como uma das funções a gravação como fluxos de dados de tipos primitivos, bem como gráficos de objetos, em um tipo OutputStream.</p>
+                    <p style="text-align: center; font-weight: bold; color: #555;">PORQUE</p>
+                    <p><strong>II.</strong> Tanto o ObjectInputStream quanto o ObjectOutputStream são classes de alto nível que herdam de java.io.InputStream e java.io.OutputStream, respectivamente.</p>
+                </div>
+
+                <p class="question-text" style="margin-top: 15px;">Analisando as asserções anteriores, assinale a alternativa correta.</p>
+
+                <div class="options">
+                    <div class="option">(a) A asserção I é uma proposição verdadeira, e a II é uma proposição falsa.</div>
+                    <div class="option">(b) As asserções I e II são proposições falsas.</div>
+                    <div class="option">(c) A asserção II é uma proposição verdadeira, e a I é uma proposição falsa.</div>
+                    <div class="option">(d) As asserções I e II são proposições verdadeiras, e a II é uma justificativa para I.</div>
+                    <div class="option option-correct" data-id="e">(e) As asserções I e II são proposições verdadeiras, mas a II não é uma justificativa para I.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (e)</h2>
+                    <p>Ambas são verdadeiras, mas a herança (II) não é a <em>causa</em> da capacidade de serialização (I).</p>
+                    
+
+                    <h3>📦 Explicação com Código</h3>
+                    <pre class="code-block"><code>
+import java.io.*;
+
+// O Objeto deve implementar Serializable
+class Usuario implements Serializable {
+    String nome;
+    public Usuario(String n) { this.nome = n; }
+}
+
+public class TesteSerializacao {
+    public static void main(String[] args) {
+        try {
+            // Cria o fluxo (OutputStream)
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("dados.bin"));
+            
+            // --- Prova da Asserção I ---
+            // Grava primitivo e Objeto
+            oos.writeInt(123); 
+            oos.writeObject(new Usuario("Ana"));
+            
+            // --- Prova da Asserção II ---
+            // Verifica herança
+            if (oos instanceof java.io.OutputStream) {
+                System.out.println("Verdadeiro: Herda de OutputStream");
+            }
+            
+            oos.close();
+        } catch (IOException e) { e.printStackTrace(); }
+    }
+}
+                    </code></pre>
+
+                    <h3>🔍 Análise Lógica</h3>
+                    <ul>
+                        <li><strong>Asserção I (Verdadeira):</strong> O código prova que <code>ObjectOutputStream</code> grava tanto primitivos (<code>writeInt</code>) quanto objetos (<code>writeObject</code>).</li>
+                        <li><strong>Asserção II (Verdadeira):</strong> O teste <code>instanceof</code> prova a herança.</li>
+                        <li><strong>Relação (II NÃO justifica I):</strong> Ser "filho" de <code>OutputStream</code> apenas diz que ele é um fluxo de saída, mas não explica <em>como</em> ele sabe transformar objetos em bytes. Outras classes (como <code>FileOutputStream</code>) também herdam de <code>OutputStream</code> mas não sabem serializar objetos.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 31: Java Networking (UDP)</h1>
+                
+                <p>Um soquete é um terminal de comunicação que serve como um link entre duas máquinas em uma rede. Ele possui um número de porta, que a camada TCP/IP pode usar para identificar o aplicativo que recebe os dados. Um endpoint, geralmente, inclui um número de porta e um endereço IP. Observe o seguinte trecho de código escrito em Java, em sua versão 8, utilizando a biblioteca java.net.*.</p>
+
+                <pre class="code-block">
+<code>
+while(true){
+    String inp = sc.nextLine();
+    // converte a string de entrada em um vetor de bytes
+    buf = inp.getBytes();
+    // Step 2: Cria o datagramPacket para ser enviado.
+    DatagramPacket DpSend = new DatagramPacket(buf, buf.length, ip, 1234);
+    // invoca o send para fazer o envio de fato
+    ds.send(DpSend);
+    // para o loop quando o usuário digitar tchau
+    if(inp.equals("tchau")){ break; }
+}
+</code>
+                </pre>
+
+                <p class="question-text">Nesse contexto, assinale corretamente a alternativa.</p>
+
+                <div class="options">
+                    <div class="option option-correct" data-id="a">(a) O DatagramPacket é utilizado para criar datagramas de dados para o envio, provendo uma melhor comunicação entre os hosts.</div>
+                    <div class="option">(b) Um Socket não suporta conexão via UDP, pois necessita de um alto padrão de confiabilidade, imprescindível para toda a rede.</div>
+                    <div class="option">(c) Qualquer fluxo, menos o de strings, pode refletir no comportamento das chamadas realizadas para envio de fluxos na rede.</div>
+                    <div class="option">(d) Não há método que possa realizar leitura de strings e convertê-los para byte, pois não é característica de orientação a objetos.</div>
+                    <div class="option">(e) Ao usar o nextLine(), o sistema ignora a linha que seria executada, pula para a próxima a ser executada.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (a)</h2>
+                    <p>Essa questão trata do protocolo <strong>UDP</strong>. Diferente do TCP, o UDP envia pacotes independentes ("cartas"), sem criar uma conexão contínua.</p>
+                    
+                    
+                    <h3>💻 Explicação com Código</h3>
+                    <p>Para enviar essa "carta", precisamos do <strong>DatagramSocket</strong> (o carteiro) e do <strong>DatagramPacket</strong> (o envelope com a carta).</p>
+
+                    <h4>1. O Receptor (Servidor)</h4>
+                    <p>Fica ouvindo a porta 1234.</p>
+                    <pre class="code-block"><code>
+DatagramSocket ds = new DatagramSocket(1234);
+byte[] receiveBuffer = new byte[1024];
+
+// Prepara o pacote VAZIO para receber dados
+DatagramPacket DpReceive = new DatagramPacket(receiveBuffer, receiveBuffer.length);
+
+// TRAVA aqui até chegar algo
+ds.receive(DpReceive);
+                    </code></pre>
+
+                    <h4>2. O Emissor (Cliente - Código da Questão)</h4>
+                    <pre class="code-block"><code>
+// Converte String para Bytes (UDP só trafega bytes)
+buf = inp.getBytes();
+
+// CRIA O PACOTE (DatagramPacket) com os dados e o destino
+DatagramPacket DpSend = new DatagramPacket(buf, buf.length, ip, 1234);
+
+// Envia o pacote
+ds.send(DpSend);
+                    </code></pre>
+
+                    <h3>❌ Por que as outras estão erradas?</h3>
+                    <ul>
+                        <li><strong>(b) Falso.</strong> <code>DatagramSocket</code> é feito especificamente para UDP.</li>
+                        <li><strong>(d) Falso.</strong> O método <code>inp.getBytes()</code> faz exatamente essa conversão e está no código.</li>
+                        <li><strong>(e) Falso.</strong> <code>nextLine()</code> lê a entrada normalmente, não pula a execução.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-slide">
+            <div class="quiz-container">
+                <h1>Questão 32: Threads (Conceito)</h1>
+                
+                <p>A linguagem Java foi projetada para usar Threads, sendo que o primeiro e principal Thread é executado no método “main”. Nesse sentido, analise as asserções a seguir e a relação proposta entre elas.</p>
+
+                <div style="background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 5px; padding: 10px 15px; margin-bottom: 15px;">
+                    <p><strong>I.</strong> O uso de Threads permite que o sistema operacional consiga dividir as tarefas entre todos os processadores disponíveis, aumentando, assim, a eficiência do processo.</p>
+                    <p><strong>II.</strong> O processamento assíncrono (segundo plano) usando Threads pode fazer um servidor de e-mail atender a mais de um usuário, simultaneamente.</p>
+                </div>
+
+                <p class="question-text">Analisando essas asserções, é correto afirmar que:</p>
+
+                <div class="options">
+                    <div class="option option-correct" data-id="a">(a) as duas asserções são verdadeiras, mas a segunda não justifica a primeira.</div>
+                    <div class="option">(b) as duas asserções são verdadeiras e a segunda justifica a primeira.</div>
+                    <div class="option">(c) as duas asserções são falsas.</div>
+                    <div class="option">(d) a primeira asserção é verdadeira e a segunda é falsa.</div>
+                    <div class="option">(e) a primeira asserção é falsa e a segunda é verdadeira.</div>
+                </div>
+
+                <button class="toggle-answer-btn">Mostrar Resposta</button>
+
+                <div class="answer-section" style="display: none;">
+                    <h2>Resposta Correta: (a)</h2>
+                    <p>As duas são verdadeiras, mas a relação é inversa: a Asserção II é um <em>exemplo de uso</em> da Asserção I, não a causa dela.</p>
+
+                    <h3>🧠 Análise Lógica</h3>
+                    <ul>
+                        <li><strong>Asserção I (Verdadeira):</strong> O Java cria a Thread, e o Sistema Operacional decide em qual núcleo da CPU ela vai rodar (Multicore). </li>
+                        <li><strong>Asserção II (Verdadeira):</strong> Servidores usam threads para atender múltiplos clientes sem travar. </li>
+                        <li><strong>Relação:</strong> O servidor funciona bem (II) <em>porque</em> o SO divide as tarefas (I).</li>
+                    </ul>
+
+                    <h3>💻 Explicando com Código (Servidor de E-mail)</h3>
+                    <p>Simulando um servidor atendendo 3 usuários simultaneamente (assíncrono):</p>
+
+                    <pre class="code-block"><code>
+public class ServidorEmail {
+    public static void main(String[] args) {
+        System.out.println("--- Servidor Iniciado ---");
+
+        // Dispara 3 threads simultâneas
+        atenderUsuario("João");
+        atenderUsuario("Maria");
+        atenderUsuario("Carlos");
+    }
+
+    public static void atenderUsuario(String nome) {
+        // Thread avisa ao SO: "Execute isso paralelamente"
+        new Thread(() -> {
+            System.out.println("Recebendo pedido de: " + nome);
+            try { 
+                Thread.sleep(2000); // Simula envio demorado
+            } catch (Exception e){}
+            System.out.println(">> Email enviado para: " + nome);
+        }).start();
+    }
+}
+// Saída (Note que eles são atendidos juntos):
+// Recebendo pedido de: João
+// Recebendo pedido de: Carlos
+// Recebendo pedido de: Maria
+// ... (2 segundos depois) ...
+// >> Email enviado para: Carlos
+// >> Email enviado para: João
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+
         <button class="nav-arrow" id="prev-btn" title="Anterior">&larr;</button>
         <button class="nav-arrow" id="next-btn" title="Próximo">&rarr;</button>
     </div>
